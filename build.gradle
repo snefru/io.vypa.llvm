@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+plugins {
+    id "org.jetbrains.intellij" version "0.0.20"
+}
+
+apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'java'
+apply plugin: 'idea'
+idea {
+    project {
+        jdkName = javaVersion
+        languageLevel = javaVersion
+    }
+    module {
+        generatedSourceDirs += file('src/gen/java')
+    }
+}
+
+intellij {
+    version 'LATEST-EAP-SNAPSHOT' //IntelliJ IDEA dependency
+//    plugins 'coverage' //Bundled plugin dependencies
+    pluginName 'llvm'
+}
+
+group 'io.vypa'
+version '0.0.1-alpha'
+
+allprojects {
+    apply plugin: 'java'
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaTargetVersion
+    tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
+    sourceSets {
+        main {
+            java.srcDirs 'src/main/java', 'gen'
+            resources.srcDir 'src/main/resources'
+        }
+        test {
+            java.srcDir 'src/test/java'
+            resources.srcDir 'src/test/resources'
+        }
+    }
+}
+
+test {
+    useJUnit {}
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+

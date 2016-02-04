@@ -1,0 +1,362 @@
+<!--
+  ~ Copyright 2016 Taimur el-Halawani
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<idea-plugin version="2">
+    <id>io.alef.vypa</id>
+    <name>LLVM</name>
+    <version>0.0.1-alpha</version>
+    <vendor url=""/>
+    <category>Custom Languages</category>
+
+    <description><![CDATA[
+    Support for LLVM programming language.
+    ]]></description>
+
+    <change-notes>
+        <![CDATA[
+    ]]>
+    </change-notes>
+
+    <depends>com.intellij.modules.lang</depends>
+    <depends optional="true" config-file="java-deps.xml">com.intellij.modules.java</depends>
+    <depends optional="true" config-file="coverage.xml">Coverage</depends>
+    <depends optional="true" config-file="coverage.xml">com.intellij.modules.coverage</depends>
+
+    <!--<module-components>-->
+        <!--<component>-->
+            <!--<implementation-class>com.goide.project.GoModuleLibrariesInitializer</implementation-class>-->
+        <!--</component>-->
+    <!--</module-components>-->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!--<stubIndex implementation="com.goide.stubs.index.GoAllPublicNamesIndex"/>-->
+        <!--<stubIndex implementation="com.goide.stubs.index.GoAllPrivateNamesIndex"/>-->
+        <!--<stubIndex implementation="com.goide.stubs.index.GoFunctionIndex"/>-->
+        <!--<stubIndex implementation="com.goide.stubs.index.GoTypesIndex"/>-->
+        <!--<stubIndex implementation="com.goide.stubs.index.GoPackagesIndex"/>-->
+        <!--<stubIndex implementation="com.goide.stubs.index.GoMethodIndex"/>-->
+        <!--<stubIndex implementation="com.goide.stubs.index.GoMethodFingerprintIndex"/>-->
+        <!--<stubElementTypeHolder class="com.goide.GoTypes"/>-->
+        <!--<indexPatternBuilder implementation="com.goide.GoIndexPatternBuilder"/>-->
+
+        <!--<internalFileTemplate name="Go Application"/>-->
+        <!--<internalFileTemplate name="Go File"/>-->
+        <!--<defaultTemplatePropertiesProvider implementation="com.goide.actions.file.GoTemplatePropertiesProvider"/>-->
+        <!--<createFromTemplateHandler implementation="com.goide.actions.file.GoCreateFromTemplateHandler"/>-->
+
+        <!--&lt;!&ndash; project &ndash;&gt;-->
+        <!--<project.converterProvider implementation="com.goide.project.migration.GoProjectModelConverterProvider"/>-->
+
+        <!--<applicationService serviceImplementation="com.goide.project.GoApplicationLibrariesService"/>-->
+        <!--<projectService serviceImplementation="com.goide.project.GoProjectLibrariesService"/>-->
+        <!--<moduleService serviceImplementation="com.goide.project.GoModuleLibrariesService"/>-->
+        <!--<projectConfigurable groupId="language" provider="com.goide.configuration.GoConfigurableProvider" dynamic="true"-->
+                             <!--bundle="do.not.touch.this.attribute"/>-->
+
+        <!--<projectService serviceImplementation="com.goide.project.GoBuildTargetSettings"/>-->
+        <!--<projectService serviceImplementation="com.goide.project.GoExcludedPathsSettings"/>-->
+        <!--<applicationService serviceImplementation="com.goide.codeInsight.imports.GoCodeInsightSettings"/>-->
+
+        <!--<defaultLiveTemplatesProvider implementation="com.goide.template.GoLiveTemplatesProvider"/>-->
+        <!--<liveTemplateContext implementation="com.goide.template.GoEverywhereContextType"/>-->
+        <!--<liveTemplateContext implementation="com.goide.template.GoLiveTemplateContextType$GoFileContextType"/>-->
+        <!--<liveTemplateContext implementation="com.goide.template.GoLiveTemplateContextType$GoBlockContextType"/>-->
+        <!--<liveTemplateContext implementation="com.goide.template.GoLiveTemplateContextType$GoTypeContextType"/>-->
+
+        <!--<lang.elementManipulator forClass="com.goide.psi.GoImportString"-->
+                                 <!--implementationClass="com.goide.psi.impl.manipulator.GoImportStringManipulator"/>-->
+
+        <!--<errorHandler implementation="com.intellij.diagnostic.ITNReporter"/>-->
+        <!--<extendWordSelectionHandler implementation="com.goide.editor.GoWordSelectioner"/>-->
+        <!--<annotator language="go" implementationClass="com.goide.highlighting.GoHighlightingAnnotator"/>-->
+        <!--<annotator language="go" implementationClass="com.goide.highlighting.GoAnnotator"/>-->
+
+        <!--<lang.importOptimizer language="go" implementationClass="com.goide.codeInsight.imports.GoImportOptimizer"/>-->
+        <!--<referenceImporter implementation="com.goide.psi.impl.imports.GoReferenceImporter"/>-->
+        <!--<psi.fileReferenceHelper implementation="com.goide.psi.impl.imports.GoImportReferenceHelper"/>-->
+        <!--<fileContextProvider implementation="com.goide.psi.impl.imports.GoFileContextProvider"/>-->
+
+        <lang.parserDefinition language="llvm" implementationClass="io.vypa.llvm.LLVMParserDefinition"/>
+        <fileTypeFactory implementation="io.vypa.llvm.LLVMFileTypeFactory"/>
+        <lang.syntaxHighlighterFactory key="llvm" implementationClass="io.vypa.llvm.highlighting.LLVMSyntaxHighlighterFactory"/>
+        <!--<lang.psiStructureViewFactory language="go" implementationClass="com.goide.tree.GoStructureViewFactory"/>-->
+        <colorSettingsPage implementation="io.vypa.llvm.LLVMColourSettingsPage"/>
+        <!--<lang.braceMatcher language="go" implementationClass="com.goide.editor.GoBraceMatcher"/>-->
+        <!--<quoteHandler fileType="Go" className="com.goide.editor.GoQuoteHandler"/>-->
+        <!--<editorTypedHandler implementationClass="com.goide.editor.GoTypedHandler"/>-->
+        <!--<lang.commenter language="go" implementationClass="com.goide.GoCommenter"/>-->
+        <!--<lang.elementManipulator forClass="com.goide.psi.impl.GoStringLiteralImpl"-->
+                                 <!--implementationClass="com.goide.psi.impl.manipulator.GoStringManipulator"/>-->
+
+        <!--<completion.contributor language="go" implementationClass="com.goide.completion.GoCompletionContributor"/>-->
+        <!--<completion.contributor language="go" implementationClass="com.goide.completion.GoKeywordCompletionContributor"/>-->
+        <!--<completion.contributor language="go" order="last" implementationClass="com.goide.completion.GoAutoImportCompletionContributor"/>-->
+        <!--<completion.confidence language="go" order="last" implementationClass="com.goide.completion.GoCompletionConfidence"/>-->
+        <!--<lookup.charFilter implementation="com.goide.completion.GoCharFilter"/>-->
+        <!--<lookup.actionProvider implementation="com.goide.codeInsight.imports.GoExcludePathLookupActionProvider"/>-->
+
+        <!--<lang.refactoringSupport language="go" implementationClass="com.goide.refactor.GoRefactoringSupportProvider"/>-->
+        <!--<spellchecker.support language="go" implementationClass="com.goide.inspections.GoSpellcheckingStrategy"/>-->
+        <!--<elementDescriptionProvider implementation="com.goide.refactor.GoDescriptionProvider"/>-->
+        <!--<lang.namesValidator language="go" implementationClass="com.goide.GoNamesValidator"/>-->
+        <!--<lang.findUsagesProvider language="go" implementationClass="com.goide.usages.GoFindUsagesProvider"/>-->
+        <!--<readWriteAccessDetector implementation="com.goide.usages.GoReadWriteAccessDetector" id="go"/>-->
+        <!--<fileStructureGroupRuleProvider implementation="com.goide.usages.GoFileStructureGroupRuleProvider"/>-->
+        <!--<lang.documentationProvider language="go" implementationClass="com.goide.GoDocumentationProvider"/>-->
+        <!--<lang.foldingBuilder language="go" implementationClass="com.goide.editor.GoFoldingBuilder"/>-->
+        <!--<typeDeclarationProvider implementation="com.goide.editor.GoTypeDeclarationProvider"/>-->
+        <!--<codeInsight.parameterInfo language="go" implementationClass="com.goide.editor.GoParameterInfoHandler"/>-->
+        <!--<lang.smartEnterProcessor language="go" implementationClass="com.goide.editor.smart.GoSmartEnterProcessor"/>-->
+        <!--<highlightUsagesHandlerFactory implementation="com.goide.highlighting.exitpoint.GoHighlightExitPointsHandlerFactory"/>-->
+        <!--<codeInsight.lineMarkerProvider language="go" implementationClass="com.goide.editor.marker.GoMethodSeparatorProvider"/>-->
+        <!--<analyzeStacktraceFilter implementation="com.goide.runconfig.GoConsoleFilter"/>-->
+        <!--<lang.implementationTextSelectioner language="go" implementationClass="com.goide.editor.GoImplementationTextSelectioner"/>-->
+        <!--<lang.surroundDescriptor language="go" implementationClass="com.goide.editor.surround.GoSurroundDescriptor"/>-->
+        <!--<iconProvider implementation="com.goide.GoIconProvider"/>-->
+        <!--<codeInsight.lineMarkerProvider language="go" implementationClass="com.goide.marker.GoRecursiveCallMarkerProvider"/>-->
+
+        <!--<directoryProjectGenerator implementation="com.goide.GoProjectGenerator"/> &lt;!&ndash; for small IDEs&ndash;&gt;-->
+
+        <!--<renamePsiElementProcessor implementation="com.goide.refactor.GoRenameImportSpecProcessor"/>-->
+
+        <!--&lt;!&ndash;formatter&ndash;&gt;-->
+        <!--<lang.formatter language="go" implementationClass="com.goide.formatter.GoFormattingModelBuilder"/>-->
+        <!--<codeStyleSettingsProvider implementation="com.goide.formatter.settings.GoCodeStyleSettingsProvider"/>-->
+        <!--<langCodeStyleSettingsProvider implementation="com.goide.formatter.settings.GoLanguageCodeStyleSettingsProvider"/>-->
+
+        <!--<renamePsiElementProcessor implementation="com.goide.refactor.GoAnonymousFieldProcessor"/>-->
+
+        <!--<gotoSymbolContributor implementation="com.goide.go.GoSymbolContributor"/>-->
+        <!--<gotoClassContributor implementation="com.goide.go.GoTypeContributor"/>-->
+
+        <!--&lt;!&ndash; sdk &ndash;&gt;-->
+        <!--<sdkType implementation="com.goide.sdk.GoSdkType"/>-->
+        <!--<applicationService serviceImplementation="com.goide.sdk.GoEnvironmentGoPathModificationTracker"/>-->
+        <!--<projectService serviceInterface="com.goide.sdk.GoSdkService" serviceImplementation="com.goide.sdk.GoSmallIDEsSdkService"-->
+                        <!--overrides="false"/>-->
+        <!--<library.presentationProvider implementation="com.goide.sdk.GoSdkLibraryPresentationProvider"/>-->
+        <!--<editorNotificationProvider implementation="com.goide.inspections.WrongSdkConfigurationNotificationProvider"/>-->
+        <!--<editorNotificationProvider implementation="com.goide.inspections.MismatchedBuildTargetNotificationProvider"/>-->
+
+        <!--<stepsBeforeRunProvider implementation="com.goide.runconfig.before.GoBeforeRunTaskProvider"/>-->
+        <!--&lt;!&ndash; run single file &ndash;&gt;-->
+        <!--<configurationType implementation="com.goide.runconfig.file.GoRunFileConfigurationType"/>-->
+        <!--<runConfigurationProducer implementation="com.goide.runconfig.file.GoRunFileConfigurationProducer"/>-->
+
+        <!--&lt;!&ndash; run application &ndash;&gt;-->
+        <!--<programRunner implementation="com.goide.runconfig.GoBuildingRunner" order="before goRunner"/>-->
+        <!--<programRunner id="goRunner" implementation="com.goide.runconfig.GoRunner"/>-->
+        <!--<runConfigurationProducer implementation="com.goide.runconfig.application.GoApplicationRunConfigurationProducer"/>-->
+        <!--<configurationType implementation="com.goide.runconfig.application.GoApplicationRunConfigurationType"/>-->
+
+        <!--&lt;!&ndash; test &ndash;&gt;-->
+        <!--<runConfigurationProducer implementation="com.goide.runconfig.testing.frameworks.gotest.GotestRunConfigurationProducer"/>-->
+        <!--<runConfigurationProducer implementation="com.goide.runconfig.testing.frameworks.gocheck.GocheckRunConfigurationProducer"/>-->
+        <!--<configurationType implementation="com.goide.runconfig.testing.GoTestRunConfigurationType"/>-->
+        <!--<testFinder implementation="com.goide.runconfig.testing.GoTestFinder"/>-->
+        <!--<testSrcLocator implementation="com.goide.runconfig.testing.GoTestLocationProvider"/>-->
+
+        <!--&lt;!&ndash; debugger &ndash;&gt;-->
+        <!--<xdebugger.breakpointType implementation="com.goide.dlv.breakpoint.DlvBreakpointType"/>-->
+
+        <!--<checkinHandlerFactory implementation="com.goide.actions.tool.GoFmtCheckinFactory" order="last"/>-->
+
+        <!--<defaultHighlightingSettingProvider implementation="com.goide.highlighting.GoDefaultHighlightingSettingProvider"/>-->
+        <!--<lang.inspectionSuppressor language="go" implementationClass="com.goide.inspections.suppression.GoInspectionSuppressor"/>-->
+
+        <!--&lt;!&ndash; unused inspections &ndash;&gt;-->
+        <!--<localInspection language="go" displayName="Unused import inspection" groupPath="Go"-->
+                         <!--groupName="Declaration redundancy" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoUnusedImportInspection"/>-->
+        <!--<localInspection language="go" displayName="Unused variable inspection" groupPath="Go"-->
+                         <!--groupName="Declaration redundancy" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.unresolved.GoUnusedVariableInspection"/>-->
+        <!--<localInspection language="go" displayName="Unused constant inspection" groupPath="Go"-->
+                         <!--groupName="Declaration redundancy" enabledByDefault="true" level="WARNING"-->
+                         <!--implementationClass="com.goide.inspections.unresolved.GoUnusedConstInspection"/>-->
+        <!--<localInspection language="go" displayName="Unused global variable inspection" groupPath="Go"-->
+                         <!--groupName="Declaration redundancy" enabledByDefault="true" level="WARNING"-->
+                         <!--implementationClass="com.goide.inspections.unresolved.GoUnusedGlobalVariableInspection"/>-->
+        <!--<localInspection language="go" displayName="Unused function inspection" groupPath="Go"-->
+                         <!--groupName="Declaration redundancy" enabledByDefault="true" level="WARNING"-->
+                         <!--implementationClass="com.goide.inspections.unresolved.GoUnusedFunctionInspection"/>-->
+        <!--&lt;!&ndash; /unused inspections &ndash;&gt;-->
+
+        <!--&lt;!&ndash; redeclare inspections &ndash;&gt;-->
+        <!--<localInspection language="go" displayName="Duplicate fields and methods inspection" groupPath="Go"-->
+                         <!--groupName="Redeclared symbols" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoDuplicateFieldsOrMethodsInspection"/>-->
+        <!--<localInspection language="go" displayName="Duplicate functions and methods inspection" groupPath="Go"-->
+                         <!--groupName="Redeclared symbols" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoDuplicateFunctionOrMethodInspection"/>-->
+        <!--<localInspection language="go" displayName="Duplicate argument" groupPath="Go"-->
+                         <!--groupName="Redeclared symbols" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoDuplicateArgumentInspection"/>-->
+        <!--<localInspection language="go" displayName="Duplicate return argument" groupPath="Go"-->
+                         <!--groupName="Redeclared symbols" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoDuplicateReturnArgumentInspection"/>-->
+        <!--<localInspection language="go" displayName="Redeclare import as function" groupPath="Go"-->
+                         <!--groupName="Redeclared symbols" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoRedeclareImportAsFunctionInspection"/>-->
+        <!--&lt;!&ndash; /redeclare inspections &ndash;&gt;-->
+
+        <!--&lt;!&ndash; code style issues &ndash;&gt;-->
+        <!--<localInspection language="go" displayName="Comment of exported element starts with incorrect name" groupPath="Go"-->
+                         <!--groupName="Code style issues" enabledByDefault="false" level="WEAK WARNING"-->
+                         <!--implementationClass="com.goide.inspections.GoCommentStartInspection"/>-->
+        <!--<localInspection language="go" displayName="Exported element should have its own declaration" groupPath="Go"-->
+                         <!--groupName="Code style issues" enabledByDefault="true" level="WEAK WARNING"-->
+                         <!--implementationClass="com.goide.inspections.GoExportedOwnDeclarationInspection"/>-->
+        <!--<localInspection language="go" displayName="Struct initialization without field names" groupPath="Go"-->
+                         <!--groupName="Code style issues" enabledByDefault="false" level="WEAK WARNING"-->
+                         <!--implementationClass="com.goide.inspections.GoStructInitializationInspection"/>-->
+        <!--&lt;!&ndash; /code style issues &ndash;&gt;-->
+
+        <!--&lt;!&ndash; probable bugs &ndash;&gt;-->
+        <!--<localInspection language="go" displayName="Reserved word used as name" groupPath="Go"-->
+                         <!--groupName="Probable bugs" enabledByDefault="true" level="WARNING"-->
+                         <!--implementationClass="com.goide.inspections.GoReservedWordUsedAsNameInspection"/>-->
+        <!--<localInspection language="go" displayName="Malformed struct tag" groupPath="Go"-->
+                         <!--groupName="Probable bugs" enabledByDefault="true" level="WARNING"-->
+                         <!--implementationClass="com.goide.inspections.GoStructTagInspection"/>-->
+        <!--<localInspection language="go" displayName="Printf/Logf placeholder handler" groupPath="Go"-->
+                         <!--groupName="Probable bug" enabledByDefault="true" level="WARNING"-->
+                         <!--implementationClass="com.goide.inspections.GoPlaceholderCountInspection"/>-->
+        <!--&lt;!&ndash; /probable bugs &ndash;&gt;-->
+
+        <!--&lt;!&ndash; control flow issues &ndash;&gt;-->
+        <!--<localInspection language="go" displayName="Missing return at end of function" groupPath="Go"-->
+                         <!--groupName="Control flow issues" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoMissingReturnInspection"/>-->
+        <!--<localInspection language="go" displayName="Used as value in condition" groupPath="Go"-->
+                         <!--groupName="Control flow issues" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoUsedAsValueInCondition"/>-->
+        <!--<localInspection language="go" displayName="Defer in loop" groupPath="Go"-->
+                         <!--groupName="Control flow issues" enabledByDefault="true" level="WEAK WARNING"-->
+                         <!--implementationClass="com.goide.inspections.GoDeferInLoopInspection"/>-->
+        <!--&lt;!&ndash; /control flow issues &ndash;&gt;-->
+
+        <!--&lt;!&ndash; general &ndash;&gt;-->
+        <!--<localInspection language="go" displayName="Unresolved reference inspection" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.unresolved.GoUnresolvedReferenceInspection"/>-->
+        <!--<localInspection language="go" displayName="Assignment to constant" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.unresolved.GoAssignmentToConstantInspection"/>-->
+        <!--<localInspection language="go" displayName="Assignment nil without explicit type" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoAssignmentNilWithoutExplicitTypeInspection"/>-->
+        <!--<localInspection language="go" displayName="Incorrect variadic parameter" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoFunctionVariadicParameterInspection"/>-->
+        <!--<localInspection language="go" displayName="Incorrect variable declaration" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoVarDeclarationInspection"/>-->
+        <!--<localInspection language="go" displayName="No new variables on left side of :=" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoNoNewVariablesInspection"/>-->
+        <!--<localInspection language="go" displayName="Function call inspection" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoFunctionCallInspection"/>-->
+        <!--<localInspection language="go" displayName="Defer/go statements check" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoDeferGoInspection"/>-->
+        <!--<localInspection language="go" displayName="Multiple packages in directory declaration" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoMultiplePackagesInspection"/>-->
+        <!--<localInspection language="go" displayName="Usage of cgo in tests is not supported" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoCgoInTestInspection"/>-->
+        <!--<localInspection language="go" displayName="Wrong test declaration" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoTestSignaturesInspection"/>-->
+        <!--<localInspection language="go" displayName="Self import" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoSelfImportInspection"/>-->
+        <!--<localInspection language="go" displayName="Embedded interface pointer" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoEmbeddedInterfacePointerInspection"/>-->
+        <!--<localInspection language="go" displayName="Method defined on non-local type" groupPath="Go"-->
+                         <!--groupName="General" enabledByDefault="true" level="ERROR"-->
+                         <!--implementationClass="com.goide.inspections.GoMethodOnNonLocalTypeInspection"/>-->
+        <!-- /general -->
+    </extensions>
+    <!--<actions>-->
+        <!--<action id="Go.NewGoFile" class="com.goide.actions.file.GoCreateFileAction"-->
+                <!--text="Go File" description="Create new Go file">-->
+            <!--<add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFile"/>-->
+        <!--</action>-->
+
+        <!--<action id="GoShowTypeInternalAction"-->
+                <!--class="com.goide.actions.internal.GoShowTypeInternalAction"-->
+                <!--text="Show Go type info">-->
+            <!--<add-to-group group-id="EditorPopupMenu" anchor="last"/>-->
+        <!--</action>-->
+
+        <!--<group id="GoTestGenerateGroup">-->
+            <!--<action id="GoGenerateTest" class="com.goide.generate.GenerateTestAction" text="Test"-->
+                    <!--description="Creates Go test function"/>-->
+            <!--<action id="GoGenerateBenchmark" class="com.goide.generate.GenerateBenchmarkAction" text="Benchmark"-->
+                    <!--description="Creates Go benchmark function"/>-->
+            <!--<separator/>-->
+            <!--<add-to-group group-id="GenerateGroup" anchor="first"/>-->
+        <!--</group>-->
+
+        <!--<action id="GoFmtFileAction" class="com.goide.actions.tool.GoFmtFileAction" text="Go fmt file"-->
+                <!--description="Format selected file with go fmt util">-->
+            <!--<add-to-group group-id="CodeMenu" anchor="last"/>-->
+            <!--<keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt F"/>-->
+        <!--</action>-->
+        <!--<action id="GoFmtProjectAction" class="com.goide.actions.tool.GoFmtProjectAction" text="Go fmt project"-->
+                <!--description="Format project with go fmt util">-->
+            <!--<add-to-group group-id="CodeMenu" anchor="last"/>-->
+            <!--<keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt P"/>-->
+        <!--</action>-->
+        <!--<action id="GoImportsFileAction" class="com.goide.actions.tool.GoImportsFileAction" text="Goimports file"-->
+                <!--description="Optimizes imports for selected file with goimports util">-->
+            <!--<add-to-group group-id="CodeMenu" anchor="last"/>-->
+        <!--</action>-->
+        <!--<action id="GoTypeFileAction" class="com.goide.actions.tool.GoTypeFileAction" text="Gotype directory"-->
+                <!--description="Analyze types for current directory with gotype util">-->
+            <!--<add-to-group group-id="CodeMenu" anchor="last"/>-->
+        <!--</action>-->
+    <!--</actions>-->
+
+    <!--<application-components>-->
+        <!--<component>-->
+            <!--<implementation-class>com.goide.ui.ProjectTutorialNotification</implementation-class>-->
+        <!--</component>-->
+        <!--<component>-->
+            <!--<implementation-class>com.goide.UpdateComponent</implementation-class>-->
+        <!--</component>-->
+    <!--</application-components>-->
+
+
+    <!--&lt;!&ndash; GAE &ndash;&gt;-->
+
+    <!--&lt;!&ndash; START plugin.xml of future GAE module &ndash;&gt;-->
+    <!--&lt;!&ndash; todo[IDEA 17] It's supposed that GAE-core module will be moved to IDEA source and bundled in IDEA 16 &ndash;&gt;-->
+    <!--&lt;!&ndash;<id>com.intellij.appengine</id>&ndash;&gt;-->
+    <!--<depends optional="true" config-file="google-app-engine-core-yaml.xml">org.jetbrains.plugins.yaml</depends>-->
+
+    <!--&lt;!&ndash; plan9 assembler &ndash;&gt;-->
+    <!--<depends optional="true" config-file="plan9.xml">com.intellij.modules.lang</depends>-->
+
+    <!--<extensionPoints>-->
+        <!--<extensionPoint name="appengine.Extension" interface="com.intellij.appengine.AppEngineExtension"/>-->
+    <!--</extensionPoints>-->
+    <!--&lt;!&ndash; END plugin.xml of future GAE module &ndash;&gt;-->
+</idea-plugin>
