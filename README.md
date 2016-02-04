@@ -6,10 +6,10 @@
 
 ##To Run
 
-1. Install [gradle](https://gradle.org)
-2. git clone https://github.com/snefru/vypa.git
-3. cd vypa
-4. gradle runIdea
+    Install [gradle](https://gradle.org)
+    git clone https://github.com/snefru/vypa.git
+    cd vypa
+    gradle runIdea
 
 
 ##Syntax
