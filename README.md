@@ -4,9 +4,14 @@
 
 [LLVM](http://llvm.org) [Intellij](http://www.jetbrains.org/pages/viewpage.action?pageId=983889) Editor Plugin
 
-##To Run
+##Requirments
 
-    Install [gradle](https://gradle.org)
+1. [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+2. [Gradle](https://gradle.org)
+
+
+##To Run
+   
     git clone https://github.com/snefru/vypa.git
     cd vypa
     gradle runIdea
