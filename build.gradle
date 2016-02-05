@@ -22,7 +22,6 @@ idea {
 
 intellij {
     version 'LATEST-EAP-SNAPSHOT' //IntelliJ IDEA dependency
-//    plugins 'coverage' //Bundled plugin dependencies
     pluginName 'llvm'
 }
 

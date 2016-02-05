@@ -26,11 +26,11 @@
         HEX_FPLITERAL       =   'regexp:0x[0-9A-Fa-f]+'
         INTERGER_LITERAL    =   'regexp:[+-]?\d+'
         LABEL_ID            =   'regexp:[-a-zA-Z\$\._][-a-zA-Z\$\._0-9]*\:'
-        STRING              =   "regexp:'([^'\\]|\\.)*'"
+        STRING              =   "regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")"
         CHAR_ARRAY_LITERAL  =   "regexp:c{STRING}"
-        COMMENT             =   "regexp:;[^\r\n]*"
+        COMMENT             =   "regexp:;.*"
         LOCAL_IDENTIFIER    =   "regexp:\%[-a-zA-Z\$._][-a-zA-Z\$._0-9]*|\%\d+|\%{STRING}"
-        GLOBAL_IDENTIFIER   =   "regexp:\@[-a-zA-Z\$._][-a-zA-Z._0-9]*|\@\d+|\@{STRING}"
+        GLOBAL_IDENTIFIER   =   "regexp:\@[-a-zA-Z\$\._][-a-zA-Z._0-9]*|\@\d+|\@{STRING}"
         COMDAT_IDENTIFIER   =   "regexp:\$[a-zA-Z][-a-zA-Z0-9]*"
         METADATA_IDENTIFIER =   'regexp:\!([-a-zA-Z\$\._][-a-zA-Z\$._0-9]*|\d+)'
         ATT_GROUP_ID        =   "regexp:\#\d+"
@@ -38,6 +38,9 @@
         BRACES              =   "regexp:[\{\}]"
         BRACKETS            =   "regexp:[\[\]]"
         COMMA               =   ","
+        ASTERISK            =   "*"
+        TIMES               =   "x"
+        METADATA_LEFT_BRACE =   '!{'
         OPERATOR            =   "regexp:[\=]"
         METADATA_STRING     =   'regexp:\!{STRING}'
     ]
@@ -112,7 +115,7 @@ Metadata            ::= METADATA_IDENTIFIER
                     |   METADATA_STRING
                     |   Value
                     |   TypedValue
-                    |   '\!' '{' (Metadata (',' Metadata)*)? '}'
+                    |   '!{' (Metadata (',' Metadata)*)? '}'
                     ;
 
 AddressSpace        ::= addrspace '(' INTERGER_LITERAL ')';

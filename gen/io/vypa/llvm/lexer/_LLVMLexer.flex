@@ -32,11 +32,11 @@ HEX_HALF_LITERAL=0xH[0-9A-Fa-f]+
 HEX_FPLITERAL=0x[0-9A-Fa-f]+
 INTERGER_LITERAL=[+-]?[0-9]+
 LABEL_ID=[-a-zA-Z\$\._][-a-zA-Z\$\._0-9]*\:
-STRING='([^'\\]|\\.)*'
+STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
 CHAR_ARRAY_LITERAL=c{STRING}
-COMMENT=;[^\r\n]*
+COMMENT=;.*
 LOCAL_IDENTIFIER=\%[-a-zA-Z\$._][-a-zA-Z\$._0-9]*|\%[0-9]+|\%{STRING}
-GLOBAL_IDENTIFIER=\@[-a-zA-Z\$._][-a-zA-Z._0-9]*|\@[0-9]+|\@{STRING}
+GLOBAL_IDENTIFIER=\@[-a-zA-Z\$\._][-a-zA-Z._0-9]*|\@[0-9]+|\@{STRING}
 COMDAT_IDENTIFIER=\$[a-zA-Z][-a-zA-Z0-9]*
 METADATA_IDENTIFIER=\!([-a-zA-Z\$\._][-a-zA-Z\$._0-9]*|[0-9]+)
 ATT_GROUP_ID=\#[0-9]+
@@ -51,6 +51,9 @@ METADATA_STRING=\!{STRING}
   {WHITE_SPACE}                      { return com.intellij.psi.TokenType.WHITE_SPACE; }
 
   ","                                { return COMMA; }
+  "*"                                { return ASTERISK; }
+  "x"                                { return TIMES; }
+  "!{"                               { return METADATA_LEFT_BRACE; }
   "align"                            { return ALIGN; }
   "unordered"                        { return UNORDERED; }
   "monotonic"                        { return MONOTONIC; }

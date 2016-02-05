@@ -76,6 +76,7 @@ public interface LLVMTypes {
   IElementType ARM_APCSCC = new LLVMTokenType("arm_apcscc");
   IElementType ASHR = new LLVMTokenType("ashr");
   IElementType ASM = new LLVMTokenType("asm");
+  IElementType ASTERISK = new LLVMTokenType("*");
   IElementType ATOMIC = new LLVMTokenType("atomic");
   IElementType ATOMICRMW = new LLVMTokenType("atomicrmw");
   IElementType ATTRIBUTES = new LLVMTokenType("attributes");
@@ -191,6 +192,7 @@ public interface LLVMTypes {
   IElementType LSHR = new LLVMTokenType("lshr");
   IElementType MAX = new LLVMTokenType("max");
   IElementType METADATA_IDENTIFIER = new LLVMTokenType("METADATA_IDENTIFIER");
+  IElementType METADATA_LEFT_BRACE = new LLVMTokenType("!{");
   IElementType METADATA_STRING = new LLVMTokenType("METADATA_STRING");
   IElementType MIN = new LLVMTokenType("min");
   IElementType MINSIZE = new LLVMTokenType("minsize");
@@ -287,6 +289,7 @@ public interface LLVMTypes {
   IElementType TARGET = new LLVMTokenType("target");
   IElementType THREAD_LOCAL = new LLVMTokenType("thread_local");
   IElementType THUNK = new LLVMTokenType("thunk");
+  IElementType TIMES = new LLVMTokenType("x");
   IElementType TO = new LLVMTokenType("to");
   IElementType TRIPLE = new LLVMTokenType("triple");
   IElementType TRUE = new LLVMTokenType("true");

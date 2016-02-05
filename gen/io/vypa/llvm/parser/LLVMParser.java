@@ -3458,7 +3458,7 @@ public class LLVMParser implements PsiParser, LightPsiParser {
   //                     |   METADATA_STRING
   //                     |   Value
   //                     |   TypedValue
-  //                     |   '\!' '{' (Metadata (',' Metadata)*)? '}'
+  //                     |   '!{' (Metadata (',' Metadata)*)? '}'
   public static boolean Metadata(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Metadata")) return false;
     boolean r;
@@ -3472,52 +3472,51 @@ public class LLVMParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // '\!' '{' (Metadata (',' Metadata)*)? '}'
+  // '!{' (Metadata (',' Metadata)*)? '}'
   private static boolean Metadata_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Metadata_4")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, "\\!");
-    r = r && consumeToken(b, "{");
-    r = r && Metadata_4_2(b, l + 1);
+    r = consumeToken(b, METADATA_LEFT_BRACE);
+    r = r && Metadata_4_1(b, l + 1);
     r = r && consumeToken(b, "}");
     exit_section_(b, m, null, r);
     return r;
   }
 
   // (Metadata (',' Metadata)*)?
-  private static boolean Metadata_4_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Metadata_4_2")) return false;
-    Metadata_4_2_0(b, l + 1);
+  private static boolean Metadata_4_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Metadata_4_1")) return false;
+    Metadata_4_1_0(b, l + 1);
     return true;
   }
 
   // Metadata (',' Metadata)*
-  private static boolean Metadata_4_2_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Metadata_4_2_0")) return false;
+  private static boolean Metadata_4_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Metadata_4_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = Metadata(b, l + 1);
-    r = r && Metadata_4_2_0_1(b, l + 1);
+    r = r && Metadata_4_1_0_1(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // (',' Metadata)*
-  private static boolean Metadata_4_2_0_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Metadata_4_2_0_1")) return false;
+  private static boolean Metadata_4_1_0_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Metadata_4_1_0_1")) return false;
     int c = current_position_(b);
     while (true) {
-      if (!Metadata_4_2_0_1_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "Metadata_4_2_0_1", c)) break;
+      if (!Metadata_4_1_0_1_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "Metadata_4_1_0_1", c)) break;
       c = current_position_(b);
     }
     return true;
   }
 
   // ',' Metadata
-  private static boolean Metadata_4_2_0_1_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Metadata_4_2_0_1_0")) return false;
+  private static boolean Metadata_4_1_0_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Metadata_4_1_0_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, COMMA);
@@ -4965,7 +4964,7 @@ public class LLVMParser implements PsiParser, LightPsiParser {
     boolean r = true;
     while (true) {
       Marker m = enter_section_(b, l, _LEFT_, null);
-      if (g < 6 && consumeTokenSmart(b, "*")) {
+      if (g < 6 && consumeTokenSmart(b, ASTERISK)) {
         r = true;
         exit_section_(b, l, m, POINTER_TYPE, r, true, null);
       }
@@ -5026,7 +5025,7 @@ public class LLVMParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeTokenSmart(b, "[");
     r = r && consumeToken(b, INTERGER_LITERAL);
-    r = r && consumeToken(b, "x");
+    r = r && consumeToken(b, TIMES);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -5158,7 +5157,7 @@ public class LLVMParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeTokenSmart(b, "<");
     r = r && consumeToken(b, INTERGER_LITERAL);
-    r = r && consumeToken(b, "x");
+    r = r && consumeToken(b, TIMES);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -5226,7 +5225,7 @@ public class LLVMParser implements PsiParser, LightPsiParser {
     r = r && consumeToken(b, "(");
     r = r && consumeToken(b, INTERGER_LITERAL);
     r = r && consumeToken(b, ")");
-    r = r && consumeToken(b, "*");
+    r = r && consumeToken(b, ASTERISK);
     exit_section_(b, m, null, r);
     return r;
   }
