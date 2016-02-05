@@ -34,7 +34,9 @@
         COMDAT_IDENTIFIER   =   "regexp:\$[a-zA-Z][-a-zA-Z0-9]*"
         METADATA_IDENTIFIER =   'regexp:\!([-a-zA-Z\$\._][-a-zA-Z\$._0-9]*|\d+)'
         ATT_GROUP_ID        =   "regexp:\#\d+"
-        BRACKETS            =   "regexp:[\{\}\(\)\[\]]"
+        PARENTHESES         =   "regexp:[(\)]"
+        BRACES              =   "regexp:[\{\}]"
+        BRACKETS            =   "regexp:[\[\]]"
         COMMA               =   ","
         OPERATOR            =   "regexp:[\=]"
         METADATA_STRING     =   'regexp:\!{STRING}'

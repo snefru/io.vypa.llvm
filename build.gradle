@@ -29,6 +29,7 @@ intellij {
 group 'io.vypa'
 version '0.0.1-alpha'
 
+
 allprojects {
     apply plugin: 'java'
     sourceCompatibility = javaVersion
@@ -52,4 +53,14 @@ test {
         exceptionFormat = 'full'
     }
 }
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile 'com.google.guava:guava:19.0'
+}
+
 

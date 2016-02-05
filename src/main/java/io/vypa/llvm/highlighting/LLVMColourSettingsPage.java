@@ -1,11 +1,11 @@
-package io.vypa.llvm;
+package io.vypa.llvm.highlighting;
 
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
 import com.intellij.openapi.options.colors.ColorSettingsPage;
-import io.vypa.llvm.highlighting.LLVMSyntaxHighlighter;
+import io.vypa.llvm.LLVMIcons;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -13,14 +13,6 @@ import javax.swing.*;
 import java.util.Map;
 
 public class LLVMColourSettingsPage implements ColorSettingsPage {
-    private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
-            new AttributesDescriptor("Bad Character", LLVMSyntaxHighlighter.BAD_CHARACTER),
-            new AttributesDescriptor("Key", LLVMSyntaxHighlighter.KEY),
-            new AttributesDescriptor("Number", LLVMSyntaxHighlighter.NUMBER),
-            new AttributesDescriptor("Separator", LLVMSyntaxHighlighter.SEPARATOR),
-            new AttributesDescriptor("Type Reference", LLVMSyntaxHighlighter.TYPE_REFERENCE),
-            new AttributesDescriptor("Value", LLVMSyntaxHighlighter.VALUE),
-    };
 
     @Nullable
     @Override
@@ -51,7 +43,7 @@ public class LLVMColourSettingsPage implements ColorSettingsPage {
     @NotNull
     @Override
     public AttributesDescriptor[] getAttributeDescriptors() {
-        return DESCRIPTORS;
+        return LLVMSyntaxHighlightingAttributes.ATTRIBUTES_DESCRIPTORS;
     }
 
     @NotNull

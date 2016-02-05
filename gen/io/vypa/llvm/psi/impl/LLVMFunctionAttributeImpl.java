@@ -1,15 +1,20 @@
 // This is a generated file. Not intended for manual editing.
 package io.vypa.llvm.psi.impl;
 
-import java.util.List;
-import org.jetbrains.annotations.*;
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import static io.vypa.llvm.psi.LLVMTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
-import io.vypa.llvm.psi.*;
+import io.vypa.llvm.psi.LLVMFunctionAttribute;
+import io.vypa.llvm.psi.LLVMVisitor;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+
+import static io.vypa.llvm.psi.LLVMTypes.ATT_GROUP_ID;
+import static io.vypa.llvm.psi.LLVMTypes.INTERGER_LITERAL;
 
 public class LLVMFunctionAttributeImpl extends ASTWrapperPsiElement implements LLVMFunctionAttribute {
 

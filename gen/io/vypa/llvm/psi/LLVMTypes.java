@@ -1,9 +1,9 @@
 // This is a generated file. Not intended for manual editing.
 package io.vypa.llvm.psi;
 
-import com.intellij.psi.tree.IElementType;
-import com.intellij.psi.PsiElement;
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.tree.IElementType;
 import io.vypa.llvm.psi.impl.*;
 
 public interface LLVMTypes {
@@ -84,6 +84,7 @@ public interface LLVMTypes {
   IElementType BITCAST = new LLVMTokenType("bitcast");
   IElementType BLOCKADDRESS = new LLVMTokenType("blockaddress");
   IElementType BR = new LLVMTokenType("br");
+  IElementType BRACES = new LLVMTokenType("BRACES");
   IElementType BRACKETS = new LLVMTokenType("BRACKETS");
   IElementType BUILTIN = new LLVMTokenType("builtin");
   IElementType BYVAL = new LLVMTokenType("byval");
@@ -233,6 +234,7 @@ public interface LLVMTypes {
   IElementType OPTSIZE = new LLVMTokenType("optsize");
   IElementType OR = new LLVMTokenType("or");
   IElementType ORD = new LLVMTokenType("ord");
+  IElementType PARENTHESES = new LLVMTokenType("PARENTHESES");
   IElementType PERSONALITY = new LLVMTokenType("personality");
   IElementType PHI = new LLVMTokenType("phi");
   IElementType PREFIX = new LLVMTokenType("prefix");

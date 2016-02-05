@@ -37,7 +37,7 @@
         <fileTypeFactory implementation="io.vypa.llvm.LLVMFileTypeFactory"/>
         <lang.syntaxHighlighterFactory key="llvm"
                                        implementationClass="io.vypa.llvm.highlighting.LLVMSyntaxHighlighterFactory"/>
-        <colorSettingsPage implementation="io.vypa.llvm.LLVMColourSettingsPage"/>
+        <colorSettingsPage implementation="io.vypa.llvm.highlighting.LLVMColourSettingsPage"/>
     </extensions>
 
     <application-components>

@@ -1,175 +1,19 @@
 // This is a generated file. Not intended for manual editing.
 package io.vypa.llvm.parser;
 
+import com.intellij.lang.ASTNode;
+import com.intellij.lang.LightPsiParser;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
-import static io.vypa.llvm.psi.LLVMTypes.*;
-import static io.vypa.llvm.parser.LLVMParserUtil.*;
-import com.intellij.psi.tree.IElementType;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.tree.TokenSet;
 import com.intellij.lang.PsiParser;
-import com.intellij.lang.LightPsiParser;
+import com.intellij.psi.tree.IElementType;
+import com.intellij.psi.tree.TokenSet;
+
+import static io.vypa.llvm.parser.LLVMParserUtil.*;
+import static io.vypa.llvm.psi.LLVMTypes.*;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
 public class LLVMParser implements PsiParser, LightPsiParser {
-
-  public ASTNode parse(IElementType t, PsiBuilder b) {
-    parseLight(t, b);
-    return b.getTreeBuilt();
-  }
-
-  public void parseLight(IElementType t, PsiBuilder b) {
-    boolean r;
-    b = adapt_builder_(t, b, this, EXTENDS_SETS_);
-    Marker m = enter_section_(b, 0, _COLLAPSE_, null);
-    if (t == ADDRESS_SPACE) {
-      r = AddressSpace(b, 0);
-    }
-    else if (t == ADDRESS_SPACE_TYPE) {
-      r = Type(b, 0, 7);
-    }
-    else if (t == ALIGNMENT) {
-      r = Alignment(b, 0);
-    }
-    else if (t == ARGUMENT) {
-      r = Argument(b, 0);
-    }
-    else if (t == ARGUMENT_LIST) {
-      r = ArgumentList(b, 0);
-    }
-    else if (t == ARRAY_TYPE) {
-      r = ArrayType(b, 0);
-    }
-    else if (t == ATOMIC_ORDERING) {
-      r = AtomicOrdering(b, 0);
-    }
-    else if (t == BASIC_BLOCK) {
-      r = BasicBlock(b, 0);
-    }
-    else if (t == CALLING_CONVENTION) {
-      r = CallingConvention(b, 0);
-    }
-    else if (t == CLAUSE) {
-      r = Clause(b, 0);
-    }
-    else if (t == COMDAT) {
-      r = Comdat(b, 0);
-    }
-    else if (t == DLL_STORAGE_CLASS) {
-      r = DllStorageClass(b, 0);
-    }
-    else if (t == ENTITY) {
-      r = Entity(b, 0);
-    }
-    else if (t == FP_PREDICATE) {
-      r = FPPredicate(b, 0);
-    }
-    else if (t == FAST_MATHS_FLAG) {
-      r = FastMathsFlag(b, 0);
-    }
-    else if (t == FLOAT_LITERAL) {
-      r = FloatLiteral(b, 0);
-    }
-    else if (t == FUNCTION_ATTRIBUTE) {
-      r = FunctionAttribute(b, 0);
-    }
-    else if (t == FUNCTION_BODY) {
-      r = FunctionBody(b, 0);
-    }
-    else if (t == FUNCTION_HEADER) {
-      r = FunctionHeader(b, 0);
-    }
-    else if (t == FUNCTION_TYPE) {
-      r = Type(b, 0, 6);
-    }
-    else if (t == INDEX) {
-      r = Index(b, 0);
-    }
-    else if (t == INSTRUCTION) {
-      r = Instruction(b, 0);
-    }
-    else if (t == INT_PREDICATE) {
-      r = IntPredicate(b, 0);
-    }
-    else if (t == LINKAGE) {
-      r = Linkage(b, 0);
-    }
-    else if (t == METADATA) {
-      r = Metadata(b, 0);
-    }
-    else if (t == OPERAND_BUNDLE) {
-      r = OperandBundle(b, 0);
-    }
-    else if (t == OPERATION) {
-      r = Operation(b, 0);
-    }
-    else if (t == PACKED_STRUCTURE_TYPE) {
-      r = PackedStructureType(b, 0);
-    }
-    else if (t == PARAMETER) {
-      r = Parameter(b, 0);
-    }
-    else if (t == PARAMETER_ATTRIBUTE) {
-      r = ParameterAttribute(b, 0);
-    }
-    else if (t == PARAMETER_LIST) {
-      r = ParameterList(b, 0);
-    }
-    else if (t == POINTER_TYPE) {
-      r = Type(b, 0, 5);
-    }
-    else if (t == PRIMITIVE_TYPE) {
-      r = PrimitiveType(b, 0);
-    }
-    else if (t == RETURN_ATTRIBUTE) {
-      r = ReturnAttribute(b, 0);
-    }
-    else if (t == SCOPE) {
-      r = Scope(b, 0);
-    }
-    else if (t == SECTION) {
-      r = Section(b, 0);
-    }
-    else if (t == SELECTION_KIND) {
-      r = SelectionKind(b, 0);
-    }
-    else if (t == STATEMENT) {
-      r = Statement(b, 0);
-    }
-    else if (t == STRUCTURE_TYPE) {
-      r = StructureType(b, 0);
-    }
-    else if (t == THREAD_LOCAL_STORAGE) {
-      r = ThreadLocalStorage(b, 0);
-    }
-    else if (t == TYPE) {
-      r = Type(b, 0, -1);
-    }
-    else if (t == TYPED_VALUE) {
-      r = TypedValue(b, 0);
-    }
-    else if (t == USER_DEFINED_TYPE) {
-      r = UserDefinedType(b, 0);
-    }
-    else if (t == VALUE) {
-      r = Value(b, 0);
-    }
-    else if (t == VECTOR_TYPE) {
-      r = VectorType(b, 0);
-    }
-    else if (t == VISIBILITY) {
-      r = Visibility(b, 0);
-    }
-    else {
-      r = parse_root_(t, b, 0);
-    }
-    exit_section_(b, 0, m, t, r, true, TRUE_CONDITION);
-  }
-
-  protected boolean parse_root_(IElementType t, PsiBuilder b, int l) {
-    return Module(b, l + 1);
-  }
 
   public static final TokenSet[] EXTENDS_SETS_ = new TokenSet[] {
     create_token_set_(ADDRESS_SPACE_TYPE, ARRAY_TYPE, FUNCTION_TYPE, PACKED_STRUCTURE_TYPE,
@@ -5385,6 +5229,117 @@ public class LLVMParser implements PsiParser, LightPsiParser {
     r = r && consumeToken(b, "*");
     exit_section_(b, m, null, r);
     return r;
+  }
+
+  public ASTNode parse(IElementType t, PsiBuilder b) {
+    parseLight(t, b);
+    return b.getTreeBuilt();
+  }
+
+  public void parseLight(IElementType t, PsiBuilder b) {
+    boolean r;
+    b = adapt_builder_(t, b, this, EXTENDS_SETS_);
+    Marker m = enter_section_(b, 0, _COLLAPSE_, null);
+    if (t == ADDRESS_SPACE) {
+      r = AddressSpace(b, 0);
+    } else if (t == ADDRESS_SPACE_TYPE) {
+      r = Type(b, 0, 7);
+    } else if (t == ALIGNMENT) {
+      r = Alignment(b, 0);
+    } else if (t == ARGUMENT) {
+      r = Argument(b, 0);
+    } else if (t == ARGUMENT_LIST) {
+      r = ArgumentList(b, 0);
+    } else if (t == ARRAY_TYPE) {
+      r = ArrayType(b, 0);
+    } else if (t == ATOMIC_ORDERING) {
+      r = AtomicOrdering(b, 0);
+    } else if (t == BASIC_BLOCK) {
+      r = BasicBlock(b, 0);
+    } else if (t == CALLING_CONVENTION) {
+      r = CallingConvention(b, 0);
+    } else if (t == CLAUSE) {
+      r = Clause(b, 0);
+    } else if (t == COMDAT) {
+      r = Comdat(b, 0);
+    } else if (t == DLL_STORAGE_CLASS) {
+      r = DllStorageClass(b, 0);
+    } else if (t == ENTITY) {
+      r = Entity(b, 0);
+    } else if (t == FP_PREDICATE) {
+      r = FPPredicate(b, 0);
+    } else if (t == FAST_MATHS_FLAG) {
+      r = FastMathsFlag(b, 0);
+    } else if (t == FLOAT_LITERAL) {
+      r = FloatLiteral(b, 0);
+    } else if (t == FUNCTION_ATTRIBUTE) {
+      r = FunctionAttribute(b, 0);
+    } else if (t == FUNCTION_BODY) {
+      r = FunctionBody(b, 0);
+    } else if (t == FUNCTION_HEADER) {
+      r = FunctionHeader(b, 0);
+    } else if (t == FUNCTION_TYPE) {
+      r = Type(b, 0, 6);
+    } else if (t == INDEX) {
+      r = Index(b, 0);
+    } else if (t == INSTRUCTION) {
+      r = Instruction(b, 0);
+    } else if (t == INT_PREDICATE) {
+      r = IntPredicate(b, 0);
+    } else if (t == LINKAGE) {
+      r = Linkage(b, 0);
+    } else if (t == METADATA) {
+      r = Metadata(b, 0);
+    } else if (t == OPERAND_BUNDLE) {
+      r = OperandBundle(b, 0);
+    } else if (t == OPERATION) {
+      r = Operation(b, 0);
+    } else if (t == PACKED_STRUCTURE_TYPE) {
+      r = PackedStructureType(b, 0);
+    } else if (t == PARAMETER) {
+      r = Parameter(b, 0);
+    } else if (t == PARAMETER_ATTRIBUTE) {
+      r = ParameterAttribute(b, 0);
+    } else if (t == PARAMETER_LIST) {
+      r = ParameterList(b, 0);
+    } else if (t == POINTER_TYPE) {
+      r = Type(b, 0, 5);
+    } else if (t == PRIMITIVE_TYPE) {
+      r = PrimitiveType(b, 0);
+    } else if (t == RETURN_ATTRIBUTE) {
+      r = ReturnAttribute(b, 0);
+    } else if (t == SCOPE) {
+      r = Scope(b, 0);
+    } else if (t == SECTION) {
+      r = Section(b, 0);
+    } else if (t == SELECTION_KIND) {
+      r = SelectionKind(b, 0);
+    } else if (t == STATEMENT) {
+      r = Statement(b, 0);
+    } else if (t == STRUCTURE_TYPE) {
+      r = StructureType(b, 0);
+    } else if (t == THREAD_LOCAL_STORAGE) {
+      r = ThreadLocalStorage(b, 0);
+    } else if (t == TYPE) {
+      r = Type(b, 0, -1);
+    } else if (t == TYPED_VALUE) {
+      r = TypedValue(b, 0);
+    } else if (t == USER_DEFINED_TYPE) {
+      r = UserDefinedType(b, 0);
+    } else if (t == VALUE) {
+      r = Value(b, 0);
+    } else if (t == VECTOR_TYPE) {
+      r = VectorType(b, 0);
+    } else if (t == VISIBILITY) {
+      r = Visibility(b, 0);
+    } else {
+      r = parse_root_(t, b, 0);
+    }
+    exit_section_(b, 0, m, t, r, true, TRUE_CONDITION);
+  }
+
+  protected boolean parse_root_(IElementType t, PsiBuilder b, int l) {
+    return Module(b, l + 1);
   }
 
 }

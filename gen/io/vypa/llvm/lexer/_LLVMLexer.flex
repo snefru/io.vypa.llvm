@@ -40,7 +40,9 @@ GLOBAL_IDENTIFIER=\@[-a-zA-Z\$._][-a-zA-Z._0-9]*|\@[0-9]+|\@{STRING}
 COMDAT_IDENTIFIER=\$[a-zA-Z][-a-zA-Z0-9]*
 METADATA_IDENTIFIER=\!([-a-zA-Z\$\._][-a-zA-Z\$._0-9]*|[0-9]+)
 ATT_GROUP_ID=\#[0-9]+
-BRACKETS=[\{\}\(\)\[\]]
+PARENTHESES=[(\)]
+BRACES=[\{\}]
+BRACKETS=[\[\]]
 OPERATOR=[\=]
 METADATA_STRING=\!{STRING}
 
@@ -318,6 +320,8 @@ METADATA_STRING=\!{STRING}
   {COMDAT_IDENTIFIER}                { return COMDAT_IDENTIFIER; }
   {METADATA_IDENTIFIER}              { return METADATA_IDENTIFIER; }
   {ATT_GROUP_ID}                     { return ATT_GROUP_ID; }
+  {PARENTHESES}                      { return PARENTHESES; }
+  {BRACES}                           { return BRACES; }
   {BRACKETS}                         { return BRACKETS; }
   {OPERATOR}                         { return OPERATOR; }
   {METADATA_STRING}                  { return METADATA_STRING; }
