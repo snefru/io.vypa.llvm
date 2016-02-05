@@ -9,25 +9,22 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 
-public class LLVMOSXSdkType extends SdkType {
 
+public class LLVMOsxSdkType extends SdkType {
     public static final String ROOT_DIR = "/usr/local";
     private static final String DEAULT_NAME = "LLVMOSXSdk";
-    //    private static final String PREFIX = "LLVM-";
-//    private static final String SUFFIX = ".app";
-//    private static final String LIBRARY = "Contents/Resources/LLVM/share/LLVM/base";
-    private static final LLVMOSXSdkType INSTANCE = new LLVMOSXSdkType();
+    private static final LLVMOsxSdkType INSTANCE = new LLVMOsxSdkType();
 
 
-    public LLVMOSXSdkType() {
+    public LLVMOsxSdkType() {
         this(DEAULT_NAME);
     }
 
-    public LLVMOSXSdkType(String name) {
+    public LLVMOsxSdkType(String name) {
         super(name);
     }
 
-    static LLVMOSXSdkType getInstance() {
+    static LLVMOsxSdkType getInstance() {
         return INSTANCE;
     }
 
@@ -84,21 +81,5 @@ public class LLVMOSXSdkType extends SdkType {
         return "undefined";
     }
 
-    @Override
-    public void setupSdkPaths(Sdk sdk) {
-        final String homePath = sdk.getHomePath();
-        if (homePath == null)
-            return;
-        final File sdkHome = new File(homePath);
-//        final VirtualFile classes = root(sdkHome, LIBRARY);
-//        final VirtualFile sources = root(sdkHome, LIBRARY);
-        final SdkModificator sdkModificator = sdk.getSdkModificator();
-//        if (classes != null) {
-//            sdkModificator.addRoot(classes, OrderRootType.CLASSES);
-//        }
-//        if (sources != null) {
-//            sdkModificator.addRoot(sources, OrderRootType.SOURCES);
-//        }
-        sdkModificator.commitChanges();
-    }
 }
+

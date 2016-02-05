@@ -7,7 +7,7 @@ public class LLVMSdkTypeFactory {
 
     static SdkType create() {
         if (SystemInfo.isMac) {
-            return LLVMOSXSdkType.getInstance();
+            return LLVMOsxSdkType.getInstance();
         }
         throw new UnsupportedOperationException("unsupported platform");
     }
