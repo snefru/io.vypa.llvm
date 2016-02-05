@@ -1495,6 +1495,7 @@ public class LLVMParser implements PsiParser, LightPsiParser {
   //                     |   atomicrmw volatile? Operation TypedValue ',' TypedValue singlethread? AtomicOrdering
   //                     |   fence singlethread? AtomicOrdering
   //                     |   getelementptr inbounds? Type ',' TypedValue (',' TypedValue)*
+  //                     |   getelementptr inbounds? TypedValue (',' TypedValue)*
   //                     |   extractvalue TypedValue (',' Index)+
   //                     |   insertvalue TypedValue ',' TypedValue(',' Index)+
   //                     |   unreachable
@@ -1570,6 +1571,7 @@ public class LLVMParser implements PsiParser, LightPsiParser {
     if (!r) r = Instruction_65(b, l + 1);
     if (!r) r = Instruction_66(b, l + 1);
     if (!r) r = Instruction_67(b, l + 1);
+    if (!r) r = Instruction_68(b, l + 1);
     if (!r) r = consumeToken(b, UNREACHABLE);
     exit_section_(b, l, m, INSTRUCTION, r, false, null);
     return r;
@@ -3313,28 +3315,71 @@ public class LLVMParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // extractvalue TypedValue (',' Index)+
+  // getelementptr inbounds? TypedValue (',' TypedValue)*
   private static boolean Instruction_66(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Instruction_66")) return false;
     boolean r;
     Marker m = enter_section_(b);
+    r = consumeToken(b, GETELEMENTPTR);
+    r = r && Instruction_66_1(b, l + 1);
+    r = r && TypedValue(b, l + 1);
+    r = r && Instruction_66_3(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // inbounds?
+  private static boolean Instruction_66_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Instruction_66_1")) return false;
+    consumeToken(b, INBOUNDS);
+    return true;
+  }
+
+  // (',' TypedValue)*
+  private static boolean Instruction_66_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Instruction_66_3")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!Instruction_66_3_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "Instruction_66_3", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // ',' TypedValue
+  private static boolean Instruction_66_3_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Instruction_66_3_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, COMMA);
+    r = r && TypedValue(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // extractvalue TypedValue (',' Index)+
+  private static boolean Instruction_67(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Instruction_67")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
     r = consumeToken(b, EXTRACTVALUE);
     r = r && TypedValue(b, l + 1);
-    r = r && Instruction_66_2(b, l + 1);
+    r = r && Instruction_67_2(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // (',' Index)+
-  private static boolean Instruction_66_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Instruction_66_2")) return false;
+  private static boolean Instruction_67_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Instruction_67_2")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = Instruction_66_2_0(b, l + 1);
+    r = Instruction_67_2_0(b, l + 1);
     int c = current_position_(b);
     while (r) {
-      if (!Instruction_66_2_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "Instruction_66_2", c)) break;
+      if (!Instruction_67_2_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "Instruction_67_2", c)) break;
       c = current_position_(b);
     }
     exit_section_(b, m, null, r);
@@ -3342,8 +3387,8 @@ public class LLVMParser implements PsiParser, LightPsiParser {
   }
 
   // ',' Index
-  private static boolean Instruction_66_2_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Instruction_66_2_0")) return false;
+  private static boolean Instruction_67_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Instruction_67_2_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, COMMA);
@@ -3353,29 +3398,29 @@ public class LLVMParser implements PsiParser, LightPsiParser {
   }
 
   // insertvalue TypedValue ',' TypedValue(',' Index)+
-  private static boolean Instruction_67(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Instruction_67")) return false;
+  private static boolean Instruction_68(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Instruction_68")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, INSERTVALUE);
     r = r && TypedValue(b, l + 1);
     r = r && consumeToken(b, COMMA);
     r = r && TypedValue(b, l + 1);
-    r = r && Instruction_67_4(b, l + 1);
+    r = r && Instruction_68_4(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // (',' Index)+
-  private static boolean Instruction_67_4(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Instruction_67_4")) return false;
+  private static boolean Instruction_68_4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Instruction_68_4")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = Instruction_67_4_0(b, l + 1);
+    r = Instruction_68_4_0(b, l + 1);
     int c = current_position_(b);
     while (r) {
-      if (!Instruction_67_4_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "Instruction_67_4", c)) break;
+      if (!Instruction_68_4_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "Instruction_68_4", c)) break;
       c = current_position_(b);
     }
     exit_section_(b, m, null, r);
@@ -3383,8 +3428,8 @@ public class LLVMParser implements PsiParser, LightPsiParser {
   }
 
   // ',' Index
-  private static boolean Instruction_67_4_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Instruction_67_4_0")) return false;
+  private static boolean Instruction_68_4_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Instruction_68_4_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, COMMA);
@@ -3987,6 +4032,7 @@ public class LLVMParser implements PsiParser, LightPsiParser {
   //                     |   or '(' TypedValue ',' TypedValue  ')'
   //                     |   xor '(' TypedValue ',' TypedValue  ')'
   //                     |   getelementptr inbounds? '(' Type ',' TypedValue (',' TypedValue)* ')'
+  //                     |   getelementptr inbounds? '(' TypedValue (',' TypedValue)* ')'
   //                     |   shufflevector '(' TypedValue ',' TypedValue ',' TypedValue ')'
   //                     |   insertelement '(' TypedValue ',' TypedValue ',' TypedValue ')'
   //                     |   extractelement '(' TypedValue ',' TypedValue ')'
@@ -4049,6 +4095,7 @@ public class LLVMParser implements PsiParser, LightPsiParser {
     if (!r) r = Value_51(b, l + 1);
     if (!r) r = Value_52(b, l + 1);
     if (!r) r = Value_53(b, l + 1);
+    if (!r) r = Value_54(b, l + 1);
     exit_section_(b, l, m, VALUE, r, false, null);
     return r;
   }
@@ -4849,9 +4896,54 @@ public class LLVMParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // shufflevector '(' TypedValue ',' TypedValue ',' TypedValue ')'
+  // getelementptr inbounds? '(' TypedValue (',' TypedValue)* ')'
   private static boolean Value_50(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Value_50")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, GETELEMENTPTR);
+    r = r && Value_50_1(b, l + 1);
+    r = r && consumeToken(b, "(");
+    r = r && TypedValue(b, l + 1);
+    r = r && Value_50_4(b, l + 1);
+    r = r && consumeToken(b, ")");
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // inbounds?
+  private static boolean Value_50_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Value_50_1")) return false;
+    consumeToken(b, INBOUNDS);
+    return true;
+  }
+
+  // (',' TypedValue)*
+  private static boolean Value_50_4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Value_50_4")) return false;
+    int c = current_position_(b);
+    while (true) {
+      if (!Value_50_4_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "Value_50_4", c)) break;
+      c = current_position_(b);
+    }
+    return true;
+  }
+
+  // ',' TypedValue
+  private static boolean Value_50_4_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Value_50_4_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, COMMA);
+    r = r && TypedValue(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // shufflevector '(' TypedValue ',' TypedValue ',' TypedValue ')'
+  private static boolean Value_51(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Value_51")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, SHUFFLEVECTOR);
@@ -4867,8 +4959,8 @@ public class LLVMParser implements PsiParser, LightPsiParser {
   }
 
   // insertelement '(' TypedValue ',' TypedValue ',' TypedValue ')'
-  private static boolean Value_51(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Value_51")) return false;
+  private static boolean Value_52(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Value_52")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, INSERTELEMENT);
@@ -4884,8 +4976,8 @@ public class LLVMParser implements PsiParser, LightPsiParser {
   }
 
   // extractelement '(' TypedValue ',' TypedValue ')'
-  private static boolean Value_52(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Value_52")) return false;
+  private static boolean Value_53(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Value_53")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, EXTRACTELEMENT);
@@ -4899,8 +4991,8 @@ public class LLVMParser implements PsiParser, LightPsiParser {
   }
 
   // select '(' TypedValue ',' TypedValue ','TypedValue ')'
-  private static boolean Value_53(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Value_53")) return false;
+  private static boolean Value_54(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Value_54")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, SELECT);

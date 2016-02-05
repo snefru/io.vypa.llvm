@@ -273,6 +273,7 @@ Instruction         ::= ret TypedValue
                     |   atomicrmw volatile? Operation TypedValue ',' TypedValue singlethread? AtomicOrdering
                     |   fence singlethread? AtomicOrdering
                     |   getelementptr inbounds? Type ',' TypedValue (',' TypedValue)*
+                    |   getelementptr inbounds? TypedValue (',' TypedValue)*
                     |   extractvalue TypedValue (',' Index)+
                     |   insertvalue TypedValue ',' TypedValue(',' Index)+
                     |   unreachable
@@ -414,6 +415,7 @@ Value               ::= GLOBAL_IDENTIFIER
                     |   xor '(' TypedValue ',' TypedValue  ')'
 
                     |   getelementptr inbounds? '(' Type ',' TypedValue (',' TypedValue)* ')'
+                    |   getelementptr inbounds? '(' TypedValue (',' TypedValue)* ')'
                     |   shufflevector '(' TypedValue ',' TypedValue ',' TypedValue ')'
                     |   insertelement '(' TypedValue ',' TypedValue ',' TypedValue ')'
                     |   extractelement '(' TypedValue ',' TypedValue ')'

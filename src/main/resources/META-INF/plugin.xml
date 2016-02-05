@@ -38,6 +38,10 @@
         <lang.syntaxHighlighterFactory key="llvm"
                                        implementationClass="io.vypa.llvm.highlighting.LLVMSyntaxHighlighterFactory"/>
         <colorSettingsPage implementation="io.vypa.llvm.highlighting.LLVMColourSettingsPage"/>
+        <runConfigurationProducer implementation="io.vypa.llvm.runner.LLVMRunConfigurationProducer"/>
+        <configurationType implementation="io.vypa.llvm.runner.LLVMApplicationConfigurationType"/>
+        <programRunner implementation="io.vypa.llvm.runner.LLVMDefaultProgramRunner"/>
+
     </extensions>
 
     <application-components>
@@ -51,4 +55,6 @@
     <actions>
         <!-- Add your actions here -->
     </actions>
+
+
 </idea-plugin>
