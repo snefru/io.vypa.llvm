@@ -24,3 +24,4 @@
 ##References
 1. [LLVM Language Reference Manual](http://llvm.org/docs/LangRef.html)
 2. [LLVM Logos and Usage Rights](http://llvm.org/Logo.html)
+3. [Go Language Plugin](https://github.com/go-lang-plugin-org/go-lang-idea-plugin)

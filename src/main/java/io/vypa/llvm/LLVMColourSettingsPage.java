@@ -14,13 +14,12 @@ import java.util.Map;
 
 public class LLVMColourSettingsPage implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
-            new AttributesDescriptor("Key", LLVMSyntaxHighlighter.KEY),
-            new AttributesDescriptor("Separator", LLVMSyntaxHighlighter.SEPARATOR),
-            new AttributesDescriptor("Value", LLVMSyntaxHighlighter.VALUE),
             new AttributesDescriptor("Bad Character", LLVMSyntaxHighlighter.BAD_CHARACTER),
+            new AttributesDescriptor("Key", LLVMSyntaxHighlighter.KEY),
             new AttributesDescriptor("Number", LLVMSyntaxHighlighter.NUMBER),
+            new AttributesDescriptor("Separator", LLVMSyntaxHighlighter.SEPARATOR),
             new AttributesDescriptor("Type Reference", LLVMSyntaxHighlighter.TYPE_REFERENCE),
-            new AttributesDescriptor("Type Reference", LLVMSyntaxHighlighter.TYPE_REFERENCE),
+            new AttributesDescriptor("Value", LLVMSyntaxHighlighter.VALUE),
     };
 
     @Nullable
