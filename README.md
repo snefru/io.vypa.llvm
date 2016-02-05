@@ -16,10 +16,11 @@
     cd vypa
     gradle runIdea
 
+##Overview
 
-##Syntax
+[LLVM Syntax Diagrams](http://snefru.github.io/io.alef.llvm/syntax-diagrams.xhtml)
 
-[LLVM Syntax Diagram](http://snefru.github.io/io.alef.llvm/syntax-diagrams.xhtml)
+![overview](./images/overview.png)
 
 ##References
 1. [LLVM Language Reference Manual](http://llvm.org/docs/LangRef.html)
