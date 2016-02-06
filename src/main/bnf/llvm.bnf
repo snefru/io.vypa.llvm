@@ -28,7 +28,7 @@
         LABEL_ID            =   'regexp:[-a-zA-Z\$\._][-a-zA-Z\$\._0-9]*\:'
         STRING              =   "regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")"
         CHAR_ARRAY_LITERAL  =   "regexp:c{STRING}"
-        COMMENT             =   "regexp:;.*"
+        COMMENT             =   "regexp:.*"
         LOCAL_IDENTIFIER    =   "regexp:\%[-a-zA-Z\$._][-a-zA-Z\$._0-9]*|\%\d+|\%{STRING}"
         GLOBAL_IDENTIFIER   =   "regexp:\@[-a-zA-Z\$\._][-a-zA-Z._0-9]*|\@\d+|\@{STRING}"
         COMDAT_IDENTIFIER   =   "regexp:\$[a-zA-Z][-a-zA-Z0-9]*"
@@ -46,10 +46,10 @@
     ]
 }
 
-Module              ::= Entity*;
+Module              ::= Entity*
 
 
-Alignment           ::= align INTERGER_LITERAL;
+Alignment           ::= align INTERGER_LITERAL
 
 AtomicOrdering      ::= unordered
                     |   monotonic
@@ -57,29 +57,28 @@ AtomicOrdering      ::= unordered
                     |   release
                     |   acq_rel
                     |   seq_cst
-                    ;
 
 Argument            ::= Type ParameterAttribute* METADATA_IDENTIFIER  //todo review
                     |   Type ParameterAttribute* Value
-                    ;
 
 
 
-ArgumentList        ::= Argument(',' Argument)*;
+ArgumentList        ::= Argument(',' Argument)*
 
 
 BasicBlock          ::= (LABEL_ID)? (Statement)+
                     |   LABEL_ID
-                    ;
 
 Clause              ::= catch TypedValue
                     |   filter TypedValue
-                    ;
 
-Comdat              ::= 'comdat' ( '('  COMDAT_IDENTIFIER ')' )?;
+Comdat              ::= 'comdat' ( '('  COMDAT_IDENTIFIER ')' )?
 
-Entity              ::= define FunctionHeader FunctionBody
-                    |   declare FunctionHeader
+FunctionDeclaration ::= declare FunctionHeader
+FunctionDefinition  ::= define FunctionHeader FunctionBody
+
+Entity              ::= FunctionDefinition
+                    |   FunctionDeclaration
                     |   'module' asm  STRING
                     |   target triple '='  STRING
                     |   target datalayout '='  STRING
@@ -109,16 +108,14 @@ Entity              ::= define FunctionHeader FunctionBody
                     |   COMDAT_IDENTIFIER '=' 'comdat' SelectionKind
                     |   METADATA_IDENTIFIER '=' distinct? Metadata
                     |   attributes ATT_GROUP_ID '=' '{' FunctionAttribute* '}'
-                    ;
 
 Metadata            ::= METADATA_IDENTIFIER
                     |   METADATA_STRING
                     |   Value
                     |   TypedValue
                     |   '!{' (Metadata (',' Metadata)*)? '}'
-                    ;
 
-AddressSpace        ::= addrspace '(' INTERGER_LITERAL ')';
+AddressSpace        ::= addrspace '(' INTERGER_LITERAL ')'
 
 FunctionAttribute   ::= ATT_GROUP_ID ('{' FunctionAttribute* '}')?
                     |   alignstack INTERGER_LITERAL
@@ -163,7 +160,6 @@ FunctionAttribute   ::= ATT_GROUP_ID ('{' FunctionAttribute* '}')?
                     |   uwtable
                     |   thunk
                     |   STRING
-                    ;
 
 FunctionHeader      ::= Linkage?
                         Visibility?
@@ -183,14 +179,12 @@ FunctionHeader      ::= Linkage?
                         (prologue TypedValue)?
                         (personality TypedValue)?
                         (METADATA_IDENTIFIER METADATA_IDENTIFIER)*
-                    ;
 
-FunctionBody        ::= '{' BasicBlock+ '}';
+FunctionBody        ::= '{' BasicBlock+ '}'
 
 
 Scope               ::= global
                     |   constant
-                    ;
 
 
 Instruction         ::= ret TypedValue
@@ -277,7 +271,7 @@ Instruction         ::= ret TypedValue
                     |   extractvalue TypedValue (',' Index)+
                     |   insertvalue TypedValue ',' TypedValue(',' Index)+
                     |   unreachable
-                    ;
+
 
 Operation           ::= xchg
                     |   add
@@ -290,13 +284,13 @@ Operation           ::= xchg
                     |   min
                     |   umax
                     |   umin
-                    ;
 
-OperandBundle       ::=  STRING '(' TypedValue (',' TypedValue) * ')';
+
+OperandBundle       ::=  STRING '(' TypedValue (',' TypedValue) * ')'
 
 Parameter           ::= Type ParameterAttribute* LOCAL_IDENTIFIER?
                     |   '...'                               //must be last
-                    ;
+
 
 ParameterAttribute  ::= align INTERGER_LITERAL
                     |   byval
@@ -315,9 +309,9 @@ ParameterAttribute  ::= align INTERGER_LITERAL
                     |   sret
                     |   zeroext
                     |    STRING
-                    ;
 
-ParameterList       ::= Parameter (',' Parameter)*;
+
+ParameterList       ::= Parameter (',' Parameter)*
 
 ReturnAttribute     ::= STRING
                     |   dereferenceable_or_null '(' INTERGER_LITERAL ')'
@@ -328,18 +322,18 @@ ReturnAttribute     ::= STRING
                     |   nonnull
                     |   signext
                     |   zeroext
-                    ;
 
-Section             ::= 'section'  STRING;
+
+Section             ::= 'section'  STRING
 
 SelectionKind       ::= any
                     |   exactmatch
                     |   largest
                     |   noduplicates
                     |   samesize
-                    ;
 
-Statement           ::= (LOCAL_IDENTIFIER '=')? Instruction (',' METADATA_IDENTIFIER Metadata)*;
+
+Statement           ::= (LOCAL_IDENTIFIER '=')? Instruction (',' METADATA_IDENTIFIER Metadata)*
 
 
 Type                ::= PrimitiveType
@@ -362,7 +356,7 @@ PointerType         ::= Type '*'
 FunctionType        ::= Type '(' (Type ',')* (Type|'...')? ')'
 AddressSpaceType    ::= Type addrspace '(' INTERGER_LITERAL ')' '*'
 
-TypedValue          ::= Type Value;
+TypedValue          ::= Type Value
 
 Value               ::= GLOBAL_IDENTIFIER
                     |   LOCAL_IDENTIFIER
@@ -420,11 +414,11 @@ Value               ::= GLOBAL_IDENTIFIER
                     |   insertelement '(' TypedValue ',' TypedValue ',' TypedValue ')'
                     |   extractelement '(' TypedValue ',' TypedValue ')'
                     |   select '(' TypedValue ',' TypedValue ','TypedValue ')'
-                    ;
+
 
 Index               ::= INTERGER_LITERAL
                     |   METADATA_IDENTIFIER
-                    ;
+
 
 CallingConvention   ::= ccc
                     |   fastcc
@@ -454,7 +448,7 @@ CallingConvention   ::= ccc
                     |   hhvm_ccc
                     |   cxx_fast_tlscc
                     |   cc digit+
-                    ;
+
 
 
 Linkage             ::= private
@@ -468,21 +462,21 @@ Linkage             ::= private
                     |   common
                     |   extern_weak
                     |   external
-                    ;
+
 
 DllStorageClass     ::= dllimport
                     |   dllexport
-                    ;
+
 
 Visibility          ::= default
                     |   hidden
                     |   protected
-                    ;
+
 
 ThreadLocalStorage  ::= localdynamic
                     |   initialexec
                     |   localexec
-                    ;
+
 
 FPPredicate         ::= oeq
                     |   one
@@ -500,7 +494,7 @@ FPPredicate         ::= oeq
                     |   uge
                     |   true
                     |   false
-                    ;
+
 
 IntPredicate        ::= eq
                     |   ne
@@ -512,7 +506,7 @@ IntPredicate        ::= eq
                     |   sge
                     |   slt
                     |   sle
-                    ;
+
 
 FloatLiteral        ::= HEX_FPLITERAL
                     |   HEX_FP80LITERAL
@@ -520,14 +514,14 @@ FloatLiteral        ::= HEX_FPLITERAL
                     |   HEX_PPC128LITERAL
                     |   HEX_HALF_LITERAL
                     |   DECIMAL_FPLITERAL
-                    ;
+
 
 FastMathsFlag       ::= fast
                     |   nnan
                     |   ninf
                     |   nsz
                     |   arcp
-                    ;
+
 
 
 

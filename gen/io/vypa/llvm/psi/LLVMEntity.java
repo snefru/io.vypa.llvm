@@ -25,10 +25,10 @@ public interface LLVMEntity extends PsiElement {
   List<LLVMFunctionAttribute> getFunctionAttributeList();
 
   @Nullable
-  LLVMFunctionBody getFunctionBody();
+  LLVMFunctionDeclaration getFunctionDeclaration();
 
   @Nullable
-  LLVMFunctionHeader getFunctionHeader();
+  LLVMFunctionDefinition getFunctionDefinition();
 
   @Nullable
   LLVMLinkage getLinkage();

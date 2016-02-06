@@ -8,12 +8,16 @@ import org.jdom.Element;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 
 public class LLVMOsxSdkType extends SdkType {
     public static final String ROOT_DIR = "/usr/local";
     private static final String DEAULT_NAME = "LLVMOSXSdk";
     private static final LLVMOsxSdkType INSTANCE = new LLVMOsxSdkType();
+    private static final Predicate<String> IS_VERSION = Pattern.compile("[0-9]\\.[0-9]\\.[0-9].*").asPredicate();
 
 
     public LLVMOsxSdkType() {
@@ -78,7 +82,7 @@ public class LLVMOsxSdkType extends SdkType {
     @Nullable
     @Override
     public String getVersionString(String sdkhome) {
-        return "undefined";
+        return Arrays.stream(sdkhome.split("/")).filter(IS_VERSION).findFirst().orElse("undefined");
     }
 
 }

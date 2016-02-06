@@ -26,6 +26,8 @@ public interface LLVMTypes {
   IElementType FP_PREDICATE = new LLVMElementType("FP_PREDICATE");
   IElementType FUNCTION_ATTRIBUTE = new LLVMElementType("FUNCTION_ATTRIBUTE");
   IElementType FUNCTION_BODY = new LLVMElementType("FUNCTION_BODY");
+  IElementType FUNCTION_DECLARATION = new LLVMElementType("FUNCTION_DECLARATION");
+  IElementType FUNCTION_DEFINITION = new LLVMElementType("FUNCTION_DEFINITION");
   IElementType FUNCTION_HEADER = new LLVMElementType("FUNCTION_HEADER");
   IElementType FUNCTION_TYPE = new LLVMElementType("FUNCTION_TYPE");
   IElementType INDEX = new LLVMElementType("INDEX");
@@ -389,6 +391,10 @@ public interface LLVMTypes {
       }
       else if (type == FUNCTION_BODY) {
         return new LLVMFunctionBodyImpl(node);
+       } else if (type == FUNCTION_DECLARATION) {
+         return new LLVMFunctionDeclarationImpl(node);
+       } else if (type == FUNCTION_DEFINITION) {
+         return new LLVMFunctionDefinitionImpl(node);
       }
       else if (type == FUNCTION_HEADER) {
         return new LLVMFunctionHeaderImpl(node);

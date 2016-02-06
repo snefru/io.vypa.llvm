@@ -41,6 +41,8 @@
         <runConfigurationProducer implementation="io.vypa.llvm.runner.LLVMRunConfigurationProducer"/>
         <configurationType implementation="io.vypa.llvm.runner.LLVMApplicationConfigurationType"/>
         <programRunner implementation="io.vypa.llvm.runner.LLVMDefaultProgramRunner"/>
+        <lang.psiStructureViewFactory language="llvm"
+                                      implementationClass="io.vypa.llvm.structure.LLVMStructureViewFactory"/>
 
     </extensions>
 

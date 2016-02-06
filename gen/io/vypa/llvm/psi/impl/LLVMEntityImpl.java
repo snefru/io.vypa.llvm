@@ -57,14 +57,14 @@ public class LLVMEntityImpl extends ASTWrapperPsiElement implements LLVMEntity {
 
   @Override
   @Nullable
-  public LLVMFunctionBody getFunctionBody() {
-    return findChildByClass(LLVMFunctionBody.class);
+  public LLVMFunctionDeclaration getFunctionDeclaration() {
+    return findChildByClass(LLVMFunctionDeclaration.class);
   }
 
   @Override
   @Nullable
-  public LLVMFunctionHeader getFunctionHeader() {
-    return findChildByClass(LLVMFunctionHeader.class);
+  public LLVMFunctionDefinition getFunctionDefinition() {
+    return findChildByClass(LLVMFunctionDefinition.class);
   }
 
   @Override

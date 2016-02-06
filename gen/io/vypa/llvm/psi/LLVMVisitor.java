@@ -79,6 +79,14 @@ public class LLVMVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitFunctionDeclaration(@NotNull LLVMFunctionDeclaration o) {
+    visitPsiElement(o);
+  }
+
+  public void visitFunctionDefinition(@NotNull LLVMFunctionDefinition o) {
+    visitPsiElement(o);
+  }
+
   public void visitFunctionHeader(@NotNull LLVMFunctionHeader o) {
     visitPsiElement(o);
   }

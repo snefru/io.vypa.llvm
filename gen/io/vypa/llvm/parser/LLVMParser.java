@@ -9,7 +9,7 @@ import com.intellij.lang.PsiParser;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
 
-import static io.vypa.llvm.parser.LLVMParserUtil.*;
+import static com.intellij.lang.parser.GeneratedParserUtilBase.*;
 import static io.vypa.llvm.psi.LLVMTypes.*;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
@@ -396,8 +396,8 @@ public class LLVMParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // define FunctionHeader FunctionBody
-  //                     |   declare FunctionHeader
+  // FunctionDefinition
+  //                     |   FunctionDeclaration
   //                     |   'module' asm  STRING
   //                     |   target triple '='  STRING
   //                     |   target datalayout '='  STRING
@@ -431,8 +431,8 @@ public class LLVMParser implements PsiParser, LightPsiParser {
     if (!recursion_guard_(b, l, "Entity")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, "<entity>");
-    r = Entity_0(b, l + 1);
-    if (!r) r = Entity_1(b, l + 1);
+    r = FunctionDefinition(b, l + 1);
+    if (!r) r = FunctionDeclaration(b, l + 1);
     if (!r) r = Entity_2(b, l + 1);
     if (!r) r = Entity_3(b, l + 1);
     if (!r) r = Entity_4(b, l + 1);
@@ -445,29 +445,6 @@ public class LLVMParser implements PsiParser, LightPsiParser {
     if (!r) r = Entity_11(b, l + 1);
     if (!r) r = Entity_12(b, l + 1);
     exit_section_(b, l, m, ENTITY, r, false, null);
-    return r;
-  }
-
-  // define FunctionHeader FunctionBody
-  private static boolean Entity_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Entity_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, DEFINE);
-    r = r && FunctionHeader(b, l + 1);
-    r = r && FunctionBody(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // declare FunctionHeader
-  private static boolean Entity_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Entity_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, DECLARE);
-    r = r && FunctionHeader(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1170,6 +1147,33 @@ public class LLVMParser implements PsiParser, LightPsiParser {
       c = current_position_(b);
     }
     exit_section_(b, m, null, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // declare FunctionHeader
+  public static boolean FunctionDeclaration(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "FunctionDeclaration")) return false;
+    if (!nextTokenIs(b, DECLARE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, DECLARE);
+    r = r && FunctionHeader(b, l + 1);
+    exit_section_(b, m, FUNCTION_DECLARATION, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // define FunctionHeader FunctionBody
+  public static boolean FunctionDefinition(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "FunctionDefinition")) return false;
+    if (!nextTokenIs(b, DEFINE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, DEFINE);
+    r = r && FunctionHeader(b, l + 1);
+    r = r && FunctionBody(b, l + 1);
+    exit_section_(b, m, FUNCTION_DEFINITION, r);
     return r;
   }
 
@@ -5367,6 +5371,10 @@ public class LLVMParser implements PsiParser, LightPsiParser {
       r = FunctionAttribute(b, 0);
     } else if (t == FUNCTION_BODY) {
       r = FunctionBody(b, 0);
+    } else if (t == FUNCTION_DECLARATION) {
+      r = FunctionDeclaration(b, 0);
+    } else if (t == FUNCTION_DEFINITION) {
+      r = FunctionDefinition(b, 0);
     } else if (t == FUNCTION_HEADER) {
       r = FunctionHeader(b, 0);
     } else if (t == FUNCTION_TYPE) {
