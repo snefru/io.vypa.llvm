@@ -43,6 +43,8 @@
         <programRunner implementation="io.vypa.llvm.runner.LLVMDefaultProgramRunner"/>
         <lang.psiStructureViewFactory language="llvm"
                                       implementationClass="io.vypa.llvm.structure.LLVMStructureViewFactory"/>
+        <lang.braceMatcher language="llvm" implementationClass="io.vypa.llvm.editor.LLVMBraceMatcher"/>
+
 
     </extensions>
 

@@ -30,9 +30,9 @@ public class LLVMParserDefinition implements ParserDefinition {
     public static final TokenSet LOCAL_IDENTIFIERS = TokenSet.create(LOCAL_IDENTIFIER);
     public static final TokenSet LABEL = TokenSet.create(LABEL_ID);
     public static final TokenSet TYPE_REFERENCE = TokenSet.create(TYPE_LITERAL);
-    public static final TokenSet BRACKETS = TokenSet.create(LLVMTypes.BRACKETS);
-    public static final TokenSet PARENTHESES = TokenSet.create(LLVMTypes.PARENTHESES);
-    public static final TokenSet BRACES = TokenSet.create(LLVMTypes.BRACES, METADATA_LEFT_BRACE);
+    public static final TokenSet BRACKETS = TokenSet.create(LEFT_BRACKET, RIGHT_BRACKET);
+    public static final TokenSet PARENTHESES = TokenSet.create(LEFT_PARENTHESIS, RIGHT_PARENTHESIS);
+    public static final TokenSet BRACES = TokenSet.create(LEFT_BRACE, RIGHT_BRACE, METADATA_LEFT_BRACE);
     public static final TokenSet COMMA = TokenSet.create(LLVMTypes.COMMA);
     public static final TokenSet KEYWORDS = TokenSet.create(
             ACQUIRE,

@@ -87,8 +87,6 @@ public interface LLVMTypes {
   IElementType BITCAST = new LLVMTokenType("bitcast");
   IElementType BLOCKADDRESS = new LLVMTokenType("blockaddress");
   IElementType BR = new LLVMTokenType("br");
-  IElementType BRACES = new LLVMTokenType("BRACES");
-  IElementType BRACKETS = new LLVMTokenType("BRACKETS");
   IElementType BUILTIN = new LLVMTokenType("builtin");
   IElementType BYVAL = new LLVMTokenType("byval");
   IElementType CALL = new LLVMTokenType("call");
@@ -184,6 +182,9 @@ public interface LLVMTypes {
   IElementType LABEL_ID = new LLVMTokenType("LABEL_ID");
   IElementType LANDINGPAD = new LLVMTokenType("landingpad");
   IElementType LARGEST = new LLVMTokenType("largest");
+  IElementType LEFT_BRACE = new LLVMTokenType("LEFT_BRACE");
+  IElementType LEFT_BRACKET = new LLVMTokenType("LEFT_BRACKET");
+  IElementType LEFT_PARENTHESIS = new LLVMTokenType("LEFT_PARENTHESIS");
   IElementType LINKONCE = new LLVMTokenType("linkonce");
   IElementType LINKONCE_ODR = new LLVMTokenType("linkonce_odr");
   IElementType LOAD = new LLVMTokenType("load");
@@ -238,7 +239,6 @@ public interface LLVMTypes {
   IElementType OPTSIZE = new LLVMTokenType("optsize");
   IElementType OR = new LLVMTokenType("or");
   IElementType ORD = new LLVMTokenType("ord");
-  IElementType PARENTHESES = new LLVMTokenType("PARENTHESES");
   IElementType PERSONALITY = new LLVMTokenType("personality");
   IElementType PHI = new LLVMTokenType("phi");
   IElementType PREFIX = new LLVMTokenType("prefix");
@@ -257,6 +257,9 @@ public interface LLVMTypes {
   IElementType RET = new LLVMTokenType("ret");
   IElementType RETURNED = new LLVMTokenType("returned");
   IElementType RETURNS_TWICE = new LLVMTokenType("returns_twice");
+  IElementType RIGHT_BRACE = new LLVMTokenType("RIGHT_BRACE");
+  IElementType RIGHT_BRACKET = new LLVMTokenType("RIGHT_BRACKET");
+  IElementType RIGHT_PARENTHESIS = new LLVMTokenType("RIGHT_PARENTHESIS");
   IElementType SAFESTACK = new LLVMTokenType("safestack");
   IElementType SAMESIZE = new LLVMTokenType("samesize");
   IElementType SANITIZE_ADDRESS = new LLVMTokenType("sanitize_address");

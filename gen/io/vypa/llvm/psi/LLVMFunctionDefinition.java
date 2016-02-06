@@ -6,10 +6,10 @@ import org.jetbrains.annotations.NotNull;
 
 public interface LLVMFunctionDefinition extends PsiElement {
 
-    @NotNull
-    LLVMFunctionBody getFunctionBody();
+  @NotNull
+  LLVMFunctionBody getFunctionBody();
 
-    @NotNull
-    LLVMFunctionHeader getFunctionHeader();
+  @NotNull
+  LLVMFunctionHeader getFunctionHeader();
 
 }

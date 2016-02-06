@@ -12,25 +12,25 @@ import org.jetbrains.annotations.NotNull;
 
 public class LLVMFunctionDefinitionImpl extends ASTWrapperPsiElement implements LLVMFunctionDefinition {
 
-    public LLVMFunctionDefinitionImpl(ASTNode node) {
-        super(node);
-    }
+  public LLVMFunctionDefinitionImpl(ASTNode node) {
+    super(node);
+  }
 
-    public void accept(@NotNull PsiElementVisitor visitor) {
-        if (visitor instanceof LLVMVisitor) ((LLVMVisitor) visitor).visitFunctionDefinition(this);
-        else super.accept(visitor);
-    }
+  public void accept(@NotNull PsiElementVisitor visitor) {
+    if (visitor instanceof LLVMVisitor) ((LLVMVisitor) visitor).visitFunctionDefinition(this);
+    else super.accept(visitor);
+  }
 
-    @Override
-    @NotNull
-    public LLVMFunctionBody getFunctionBody() {
-        return findNotNullChildByClass(LLVMFunctionBody.class);
-    }
+  @Override
+  @NotNull
+  public LLVMFunctionBody getFunctionBody() {
+    return findNotNullChildByClass(LLVMFunctionBody.class);
+  }
 
-    @Override
-    @NotNull
-    public LLVMFunctionHeader getFunctionHeader() {
-        return findNotNullChildByClass(LLVMFunctionHeader.class);
-    }
+  @Override
+  @NotNull
+  public LLVMFunctionHeader getFunctionHeader() {
+    return findNotNullChildByClass(LLVMFunctionHeader.class);
+  }
 
 }

@@ -24,7 +24,6 @@ public class Element extends PsiTreeElementBase<PsiElement> {
     @Override
     public Collection<StructureViewTreeElement> getChildrenBase() {
         return new CollectionBuilder(getElement()).build();
-
     }
 
     @Nullable

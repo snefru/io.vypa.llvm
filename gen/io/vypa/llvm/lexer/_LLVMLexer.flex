@@ -40,11 +40,14 @@ GLOBAL_IDENTIFIER=\@[-a-zA-Z\$\._][-a-zA-Z._0-9]*|\@[0-9]+|\@{STRING}
 COMDAT_IDENTIFIER=\$[a-zA-Z][-a-zA-Z0-9]*
 METADATA_IDENTIFIER=\!([-a-zA-Z\$\._][-a-zA-Z\$._0-9]*|[0-9]+)
 ATT_GROUP_ID=\#[0-9]+
-PARENTHESES=[(\)]
-BRACES=[\{\}]
-BRACKETS=[\[\]]
-OPERATOR=[\=]
+LEFT_PARENTHESIS=\(
+RIGHT_PARENTHESIS=\)
+LEFT_BRACE=\{
+RIGHT_BRACE=\}
+LEFT_BRACKET=\[
+RIGHT_BRACKET=\]
 METADATA_STRING=\!{STRING}
+OPERATOR=[\=]
 
 %%
 <YYINITIAL> {
@@ -55,6 +58,7 @@ METADATA_STRING=\!{STRING}
   "x"                                { return TIMES; }
   "!{"                               { return METADATA_LEFT_BRACE; }
   "align"                            { return ALIGN; }
+  "addrspace"                        { return ADDRSPACE; }
   "unordered"                        { return UNORDERED; }
   "monotonic"                        { return MONOTONIC; }
   "acquire"                          { return ACQUIRE; }
@@ -63,8 +67,6 @@ METADATA_STRING=\!{STRING}
   "seq_cst"                          { return SEQ_CST; }
   "catch"                            { return CATCH; }
   "filter"                           { return FILTER; }
-  "define"                           { return DEFINE; }
-  "declare"                          { return DECLARE; }
   "asm"                              { return ASM; }
   "target"                           { return TARGET; }
   "triple"                           { return TRIPLE; }
@@ -75,8 +77,8 @@ METADATA_STRING=\!{STRING}
   "externally_initialized"           { return EXTERNALLY_INITIALIZED; }
   "alias"                            { return ALIAS; }
   "distinct"                         { return DISTINCT; }
+  "Metadata"                         { return METADATA; }
   "attributes"                       { return ATTRIBUTES; }
-  "addrspace"                        { return ADDRSPACE; }
   "alignstack"                       { return ALIGNSTACK; }
   "alwaysinline"                     { return ALWAYSINLINE; }
   "builtin"                          { return BUILTIN; }
@@ -112,6 +114,8 @@ METADATA_STRING=\!{STRING}
   "sanitize_memory"                  { return SANITIZE_MEMORY; }
   "uwtable"                          { return UWTABLE; }
   "thunk"                            { return THUNK; }
+  "declare"                          { return DECLARE; }
+  "define"                           { return DEFINE; }
   "gc"                               { return GC; }
   "prefix"                           { return PREFIX; }
   "prologue"                         { return PROLOGUE; }
@@ -323,11 +327,14 @@ METADATA_STRING=\!{STRING}
   {COMDAT_IDENTIFIER}                { return COMDAT_IDENTIFIER; }
   {METADATA_IDENTIFIER}              { return METADATA_IDENTIFIER; }
   {ATT_GROUP_ID}                     { return ATT_GROUP_ID; }
-  {PARENTHESES}                      { return PARENTHESES; }
-  {BRACES}                           { return BRACES; }
-  {BRACKETS}                         { return BRACKETS; }
-  {OPERATOR}                         { return OPERATOR; }
+  {LEFT_PARENTHESIS}                 { return LEFT_PARENTHESIS; }
+  {RIGHT_PARENTHESIS}                { return RIGHT_PARENTHESIS; }
+  {LEFT_BRACE}                       { return LEFT_BRACE; }
+  {RIGHT_BRACE}                      { return RIGHT_BRACE; }
+  {LEFT_BRACKET}                     { return LEFT_BRACKET; }
+  {RIGHT_BRACKET}                    { return RIGHT_BRACKET; }
   {METADATA_STRING}                  { return METADATA_STRING; }
+  {OPERATOR}                         { return OPERATOR; }
 
   [^] { return com.intellij.psi.TokenType.BAD_CHARACTER; }
 }

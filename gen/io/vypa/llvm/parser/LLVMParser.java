@@ -9,7 +9,7 @@ import com.intellij.lang.PsiParser;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
 
-import static com.intellij.lang.parser.GeneratedParserUtilBase.*;
+import static io.vypa.llvm.parser.LLVMParserUtil.*;
 import static io.vypa.llvm.psi.LLVMTypes.*;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
