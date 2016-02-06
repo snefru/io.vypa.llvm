@@ -27,12 +27,12 @@ public class CollectionBuilder extends LLVMVisitor {
     }
 
     public void visitFunctionDeclaration(@NotNull final LLVMFunctionDeclaration declaration) {
-        builder.add(new Element(declaration, declaration.getFunctionHeader().getGlobalIdentifier().getText(), Nodes.Interface));
+        builder.add(new Element(declaration, declaration.getFunctionHeader().getText(), Nodes.MethodReference));
     }
 
     @Override
     public void visitFunctionDefinition(@NotNull final LLVMFunctionDefinition definition) {
-        builder.add(new Element(definition, definition.getFunctionHeader().getGlobalIdentifier().getText(), Nodes.Function));
+        builder.add(new Element(definition, definition.getFunctionHeader().getText(), Nodes.Method));
     }
 
     @Override
