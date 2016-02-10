@@ -1,7 +1,7 @@
 
 ![LLVM-Logo-Derivative-4.png](http://llvm.org/img/LLVM-Logo-Derivative-4.png)
-#LLVM Intellij Plugin [![Build Status](https://travis-ci.org/snefru/vypa.svg?branch=master)](https://travis-ci.org/snefru/vypa)
-
+#LLVM Intellij Plugin [![Build Status](https://travis-ci.org/snefru/io.vypa.llvm.svg?branch=master)](https://travis-ci.org/snefru/io.vypa.llvm)
+                      
 [LLVM](http://llvm.org) [Intellij](http://www.jetbrains.org/pages/viewpage.action?pageId=983889) Editor Plugin
 
 ##Requirments
