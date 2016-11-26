@@ -19,7 +19,7 @@
     <name>LLVM</name>
     <version>0.0.1-alpha</version>
     <idea-version since-build="139"/>
-    <vendor url=""/>
+    <vendor url="https://github.com/snefru"/>
     <category>Custom Languages</category>
     <description><![CDATA[
     LLVM language support
