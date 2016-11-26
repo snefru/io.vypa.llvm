@@ -12,9 +12,10 @@
 
 ##To Run
    
-    git clone https://github.com/snefru/vypa.git
-    cd vypa
+    git clone https://github.com/snefru/io.vypa.llvm.git
+    cd io.vypa.llvm
     gradle runIdea
+    Configure LLVM SDK to root of local LLVM installation
 
 ##Overview
 

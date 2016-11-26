@@ -18,6 +18,7 @@
     <id>io.alef.vypa</id>
     <name>LLVM</name>
     <version>0.0.1-alpha</version>
+    <idea-version since-build="139"/>
     <vendor url=""/>
     <category>Custom Languages</category>
     <description><![CDATA[
