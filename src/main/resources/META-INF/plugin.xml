@@ -22,7 +22,7 @@
     <vendor url=""/>
     <category>Custom Languages</category>
     <description><![CDATA[
-    Support for LLVM programming language.
+    LLVM language support
     ]]></description>
     <change-notes>
         <![CDATA[
