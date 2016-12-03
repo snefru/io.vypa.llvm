@@ -6,9 +6,9 @@
 
 
 ##Overview
+An Intellij plugin for LLVM.
 
-
-[LLVM Syntax Diagrams](http://snefru.github.io/io.alef.llvm/syntax-diagrams.xhtml)
+> Supported grammar defined in the the following [Syntax Diagrams](http://snefru.github.io/io.alef.llvm/syntax-diagrams.xhtml).
 
 ###Snapshots
 
