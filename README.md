@@ -15,7 +15,11 @@
     git clone https://github.com/snefru/io.vypa.llvm.git
     cd io.vypa.llvm
     gradle runIdea
-    Configure LLVM SDK to root of local LLVM installation
+    Configure the Project SDK to point to the root of the local LLVM installation
+
+##To Install as a Plugin
+
+    https://plugins.jetbrains.com/plugin/9283?
 
 ##Overview
 

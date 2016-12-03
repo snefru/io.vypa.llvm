@@ -17,9 +17,10 @@
 <idea-plugin version="2">
     <id>io.alef.vypa</id>
     <name>LLVM</name>
-    <version>0.0.1-alpha</version>
+    <version>0.0.2-alpha</version>
     <idea-version since-build="139"/>
-    <vendor url="https://github.com/snefru"/>
+    <vendor url="https://github.com/snefru/io.vypa.llvm"/>
+
     <category>Custom Languages</category>
     <description><![CDATA[
     LLVM language support
@@ -29,7 +30,6 @@
     ]]>
     </change-notes>
     <depends>com.intellij.modules.lang</depends>
-    <depends optional="true" config-file="java-deps.xml">com.intellij.modules.java</depends>
     <extensions defaultExtensionNs="com.intellij">
         <moduleType id="LLVM_MODULE" implementationClass="io.vypa.llvm.module.LLVMModuleType"/>
         <sdkType implementation="io.vypa.llvm.sdk.LLVMSdkType"/>
@@ -68,6 +68,4 @@
             <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFile"/>
         </action>
     </actions>
-
-
 </idea-plugin>
