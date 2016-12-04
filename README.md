@@ -5,7 +5,9 @@
 [LLVM](http://llvm.org) [Intellij](http://www.jetbrains.org/pages/viewpage.action?pageId=983889) Editor Plugin
 
 
-##Grammar
+##Overview
+
+###Grammar
 
 Underlying grammar defined in the following [Syntax Diagrams](http://snefru.github.io/io.alef.llvm/syntax-diagrams.xhtml).
 
