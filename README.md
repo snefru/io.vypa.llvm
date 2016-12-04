@@ -5,10 +5,9 @@
 [LLVM](http://llvm.org) [Intellij](http://www.jetbrains.org/pages/viewpage.action?pageId=983889) Editor Plugin
 
 
-##Overview
-An Intellij plugin for LLVM.
+##Grammar
 
-> Supported grammar defined in the the following [Syntax Diagrams](http://snefru.github.io/io.alef.llvm/syntax-diagrams.xhtml).
+Underlying grammar defined in the following [Syntax Diagrams](http://snefru.github.io/io.alef.llvm/syntax-diagrams.xhtml).
 
 ###Snapshots
 
@@ -24,7 +23,7 @@ An Intellij plugin for LLVM.
 
 Alternatively 
 * Download the [plugin jar](https://plugins.jetbrains.com/plugin/9283) to your local disk
-*  Go to Preferences > Plugins > Install plugin from disk and choose the jar you downloaded
+*  Go to Preferences > Plugins > Install plugin from disk and choose the file you downloaded
 
 
 ##To Develop
