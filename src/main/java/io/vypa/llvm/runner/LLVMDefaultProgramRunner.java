@@ -11,7 +11,7 @@ public class LLVMDefaultProgramRunner extends DefaultProgramRunner {
     @NotNull
     @Override
     public String getRunnerId() {
-        return "JuliaCommandLineRunner";
+        return "LLVMCommandLineRunner";
     }
 
     @Override

@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class LLVMSdkType extends SdkType {
 
-    private static final String NAME = "DefaultJuliaSdkType";
+    private static final String NAME = "DefaultLLVMSdkType";
     private final SdkType myDelegate;
     private Sdk mySdk;
 

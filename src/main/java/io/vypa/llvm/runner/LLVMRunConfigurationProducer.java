@@ -18,7 +18,7 @@ public class LLVMRunConfigurationProducer extends RunConfigurationProducer<LLVMA
     }
 
     @Nullable
-    public static VirtualFile findRunnableJuliaFile(final @NotNull ConfigurationContext context) {
+    public static VirtualFile findRunnableLLVMFile(final @NotNull ConfigurationContext context) {
         final PsiElement psiLocation = context.getPsiLocation();
         final PsiFile psiFile = psiLocation == null ? null : psiLocation.getContainingFile();
         final VirtualFile virtualFile = psiFile != null ? psiFile.getOriginalFile().getVirtualFile() : null;
@@ -34,10 +34,10 @@ public class LLVMRunConfigurationProducer extends RunConfigurationProducer<LLVMA
     protected boolean setupConfigurationFromContext(final @NotNull LLVMApplicationConfiguration configuration,
                                                     final @NotNull ConfigurationContext context,
                                                     final @NotNull Ref<PsiElement> sourceElement) {
-        final VirtualFile juliaFile = findRunnableJuliaFile(context);
-        if (juliaFile == null)
+        final VirtualFile LLVMFile = findRunnableLLVMFile(context);
+        if (LLVMFile == null)
             return false;
-        configuration.setFilePath(juliaFile.getPath());
+        configuration.setFilePath(LLVMFile.getPath());
         configuration.setName(configuration.suggestedName());
         return true;
     }
@@ -45,7 +45,7 @@ public class LLVMRunConfigurationProducer extends RunConfigurationProducer<LLVMA
     @Override
     public boolean isConfigurationFromContext(final @NotNull LLVMApplicationConfiguration configuration,
                                               final @NotNull ConfigurationContext context) {
-        final VirtualFile JuliaFile = findRunnableJuliaFile(context);
-        return JuliaFile != null && JuliaFile.getPath().equals(configuration.getFilePath());
+        final VirtualFile LLVMFile = findRunnableLLVMFile(context);
+        return LLVMFile != null && LLVMFile.getPath().equals(configuration.getFilePath());
     }
 }

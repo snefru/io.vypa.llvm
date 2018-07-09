@@ -8,6 +8,8 @@ public class LLVMSdkTypeFactory {
     static SdkType create() {
         if (SystemInfo.isMac) {
             return LLVMOsxSdkType.getInstance();
+        } else if (SystemInfo.isUnix) {
+            return LLVMUnixSdkType.getInstance();
         }
         throw new UnsupportedOperationException("unsupported platform");
     }
