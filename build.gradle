@@ -4,7 +4,7 @@ buildscript {
     }
 }
 plugins {
-    id "org.jetbrains.intellij" version "0.0.20"
+    id "org.jetbrains.intellij" version "0.3.3"
 }
 
 apply plugin: 'org.jetbrains.intellij'
@@ -21,7 +21,8 @@ idea {
 }
 
 intellij {
-    version 'LATEST-EAP-SNAPSHOT' //IntelliJ IDEA dependency
+    // version 'LATEST-EAP-SNAPSHOT' //IntelliJ IDEA dependency
+    version 'IC-2018.1' //IntelliJ IDEA dependency
     pluginName 'llvm'
 }
 
