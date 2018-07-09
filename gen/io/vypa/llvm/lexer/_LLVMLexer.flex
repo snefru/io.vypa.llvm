@@ -1,6 +1,10 @@
 package io.vypa.llvm.lexer;
-import com.intellij.lexer.*;
+
+import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
+
+import static com.intellij.psi.TokenType.BAD_CHARACTER;
+import static com.intellij.psi.TokenType.WHITE_SPACE;
 import static io.vypa.llvm.psi.LLVMTypes.*;
 
 %%
@@ -18,9 +22,8 @@ import static io.vypa.llvm.psi.LLVMTypes.*;
 %type IElementType
 %unicode
 
-EOL="\r"|"\n"|"\r\n"
-LINE_WS=[\ \t\f]
-WHITE_SPACE=({LINE_WS}|{EOL})+
+EOL=\R
+WHITE_SPACE=\s+
 
 KEYWORD=acq_rel|acquire|add|addrspace|addrspacecast|alias|align|alignstack|alloca|alwaysinline|and|any|anyregcc|appending|arcp|argmemonly|arm_aapcs_vfpcc|arm_aapcscc|arm_apcscc|ashr|asm|atomic|atomicrmw|available_externally|bitcast|blockaddress|br|builtin|byval|call|catch|catchpad|catchret|catchswitch|ccc|clause|cleanup|cleanuppad|cleanupret|cmpxchg|cold|coldcc|comdat|common|constant|convergent|cxx_fast_tlscc|datalayout|distinct|declare|default|define|deplibs|dereferenceable|dereferenceable_or_null|dllexport|dllimport|double|eq|exact|exactmatch|extern_weak|external|externally_initialized|extractelement|extractvalue|fadd|false|false|fast|fastcc|fcmp|fdiv|fence|filter|float|fmul|fp128|fpext|fpext|fptosi|fptoui|fptrunc|frem|from|fsub|gc|getelementptr|ghccc|global|half|hhvm_ccc|hhvmcc|hidden|icmp|inaccessiblemem_or_argmemonly|inaccessiblememonly|inalloca|inbounds|indirectbr|initialexec|inlinehint|inreg|insertelement|insertvalue|intel_ocl_bicc|inteldialect|internal|inttoptr|invoke|jumptable|landingpad|largest|linkonce|linkonce_odr|load|localdynamic|localexec|lshr|max|metadata|min|minsize|module|monotonic|msp430_intrcc|mul|musttail|naked|nand|ne|nest|ninf|nnan|noalias|noalias|nobuiltin|nocapture|noduplicate|noduplicates|noimplicitfloat|noinline|none|nonlazybind|nonnull|norecurse|noredzone|noreturn|notail|nounwind|nsw|nsz|null|nuw|oeq|oge|ogt|ole|olt|one|opaque|optnone|optsize|or|ord|personality|phippc_fp128|prefix|preserve_allcc|preserve_mostcc|private|prologue|protected|ptrtoint|ptrtoint|ptx_device|ptx_kernel|readnone|readonly|release|resume|ret|returned|returns_twice|safestack|samesize|sanitize_address|sanitize_memory|sanitize_thread|sdiv|section|select|seq_cst|sext|sge|sgt|shl|shufflevector|signext|signext|singlethread|sitofp|sitofp|sle|slt|spir_func|spir_kernel|srem|sret|ssp|sspreq|sspstrong|store|sub|switch|tail|target|thread_local|thunk|to|token|triple|true|true|trunc|trunc|type|udiv|ueq|uge|uge|ugt|ugt|uitofp|uitofp|ule|ult|umax|umin|undef|une|unnamed_addr|uno|unordered|unreachable|unwind|urem|uwtable|va_arg|void|volatile|weak|weak_odr|webkit_jscc|within|x86_64_sysvcc|x86_64_win64cc|x86_fastcallcc|x86_fp80|x86_intrcc|x86_mmx|x86_stdcallcc|x86_thiscallcc|x86_vectorcallcc|xchg|xor|xor|zeroext|zeroext|zeroinitializer|zext|zext
 TYPE_LITERAL=i[0-9]+|half|float|double|fp128|x86_fp80|ppc_fp128|x86_mmx|opaque|void|token|label|metadata
@@ -51,7 +54,7 @@ OPERATOR=[\=]
 
 %%
 <YYINITIAL> {
-  {WHITE_SPACE}                      { return com.intellij.psi.TokenType.WHITE_SPACE; }
+  {WHITE_SPACE}                      { return WHITE_SPACE; }
 
   ","                                { return COMMA; }
   "*"                                { return ASTERISK; }
@@ -77,7 +80,6 @@ OPERATOR=[\=]
   "externally_initialized"           { return EXTERNALLY_INITIALIZED; }
   "alias"                            { return ALIAS; }
   "distinct"                         { return DISTINCT; }
-  "Metadata"                         { return METADATA; }
   "attributes"                       { return ATTRIBUTES; }
   "alignstack"                       { return ALIGNSTACK; }
   "alwaysinline"                     { return ALWAYSINLINE; }
@@ -336,5 +338,6 @@ OPERATOR=[\=]
   {METADATA_STRING}                  { return METADATA_STRING; }
   {OPERATOR}                         { return OPERATOR; }
 
-  [^] { return com.intellij.psi.TokenType.BAD_CHARACTER; }
 }
+
+[^] { return BAD_CHARACTER; }
