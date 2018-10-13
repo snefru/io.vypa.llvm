@@ -39,7 +39,7 @@ Alternatively
    
     git clone https://github.com/snefru/io.vypa.llvm.git
     cd io.vypa.llvm
-    gradle runIdea
+    gradle runIde
     Configure the Project SDK to point to the root of the local LLVM installation
 
 ## References

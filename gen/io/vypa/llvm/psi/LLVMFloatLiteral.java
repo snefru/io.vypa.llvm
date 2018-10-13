@@ -1,8 +1,9 @@
 // This is a generated file. Not intended for manual editing.
 package io.vypa.llvm.psi;
 
+import java.util.List;
+import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.Nullable;
 
 public interface LLVMFloatLiteral extends PsiElement {
 
@@ -10,10 +11,10 @@ public interface LLVMFloatLiteral extends PsiElement {
   PsiElement getDecimalFpliteral();
 
   @Nullable
-  PsiElement getHexFp128literal();
+  PsiElement getHexFp128Literal();
 
   @Nullable
-  PsiElement getHexFp80literal();
+  PsiElement getHexFp80Literal();
 
   @Nullable
   PsiElement getHexFpliteral();
@@ -22,6 +23,6 @@ public interface LLVMFloatLiteral extends PsiElement {
   PsiElement getHexHalfLiteral();
 
   @Nullable
-  PsiElement getHexPpc128literal();
+  PsiElement getHexPpc128Literal();
 
 }

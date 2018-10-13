@@ -1,15 +1,14 @@
 // This is a generated file. Not intended for manual editing.
 package io.vypa.llvm.psi.impl;
 
+import java.util.List;
+import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
-import io.vypa.llvm.psi.LLVMAddressSpaceType;
-import io.vypa.llvm.psi.LLVMType;
-import io.vypa.llvm.psi.LLVMVisitor;
-import org.jetbrains.annotations.NotNull;
-
-import static io.vypa.llvm.psi.LLVMTypes.INTERGER_LITERAL;
+import com.intellij.psi.util.PsiTreeUtil;
+import static io.vypa.llvm.psi.LLVMTypes.*;
+import io.vypa.llvm.psi.*;
 
 public class LLVMAddressSpaceTypeImpl extends LLVMTypeImpl implements LLVMAddressSpaceType {
 
@@ -17,8 +16,12 @@ public class LLVMAddressSpaceTypeImpl extends LLVMTypeImpl implements LLVMAddres
     super(node);
   }
 
+  public void accept(@NotNull LLVMVisitor visitor) {
+    visitor.visitAddressSpaceType(this);
+  }
+
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof LLVMVisitor) ((LLVMVisitor)visitor).visitAddressSpaceType(this);
+    if (visitor instanceof LLVMVisitor) accept((LLVMVisitor)visitor);
     else super.accept(visitor);
   }
 

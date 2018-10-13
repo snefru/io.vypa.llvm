@@ -1,16 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package io.vypa.llvm.psi.impl;
 
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import java.util.List;
+import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import io.vypa.llvm.psi.LLVMBasicBlock;
-import io.vypa.llvm.psi.LLVMFunctionBody;
-import io.vypa.llvm.psi.LLVMVisitor;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
+import static io.vypa.llvm.psi.LLVMTypes.*;
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import io.vypa.llvm.psi.*;
 
 public class LLVMFunctionBodyImpl extends ASTWrapperPsiElement implements LLVMFunctionBody {
 
@@ -18,8 +17,12 @@ public class LLVMFunctionBodyImpl extends ASTWrapperPsiElement implements LLVMFu
     super(node);
   }
 
+  public void accept(@NotNull LLVMVisitor visitor) {
+    visitor.visitFunctionBody(this);
+  }
+
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof LLVMVisitor) ((LLVMVisitor)visitor).visitFunctionBody(this);
+    if (visitor instanceof LLVMVisitor) accept((LLVMVisitor)visitor);
     else super.accept(visitor);
   }
 

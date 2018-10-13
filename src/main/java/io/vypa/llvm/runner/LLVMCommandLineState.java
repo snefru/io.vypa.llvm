@@ -15,7 +15,7 @@ import com.intellij.openapi.roots.ProjectRootManager;
 import org.jetbrains.annotations.NotNull;
 
 public class LLVMCommandLineState extends CommandLineState {
-    private static final Logger LOGGER = Logger.getInstance("org.jetbrains.julia.parser.JuliaParser");
+    private static final Logger LOGGER = Logger.getInstance("io.vypa.llvm.LLVMParser");
 
     private final
     @NotNull

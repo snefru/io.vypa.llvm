@@ -1,21 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package io.vypa.llvm.psi.impl;
 
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import java.util.List;
+import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import io.vypa.llvm.psi.LLVMParameter;
-import io.vypa.llvm.psi.LLVMParameterAttribute;
-import io.vypa.llvm.psi.LLVMType;
-import io.vypa.llvm.psi.LLVMVisitor;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
-
-import static io.vypa.llvm.psi.LLVMTypes.LOCAL_IDENTIFIER;
+import static io.vypa.llvm.psi.LLVMTypes.*;
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import io.vypa.llvm.psi.*;
 
 public class LLVMParameterImpl extends ASTWrapperPsiElement implements LLVMParameter {
 
@@ -23,8 +17,12 @@ public class LLVMParameterImpl extends ASTWrapperPsiElement implements LLVMParam
     super(node);
   }
 
+  public void accept(@NotNull LLVMVisitor visitor) {
+    visitor.visitParameter(this);
+  }
+
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof LLVMVisitor) ((LLVMVisitor)visitor).visitParameter(this);
+    if (visitor instanceof LLVMVisitor) accept((LLVMVisitor)visitor);
     else super.accept(visitor);
   }
 

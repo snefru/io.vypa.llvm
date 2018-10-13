@@ -1,9 +1,9 @@
 // This is a generated file. Not intended for manual editing.
 package io.vypa.llvm.psi;
 
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
+import com.intellij.psi.PsiElement;
+import com.intellij.lang.ASTNode;
 import io.vypa.llvm.psi.impl.*;
 
 public interface LLVMTypes {
@@ -394,10 +394,12 @@ public interface LLVMTypes {
       }
       else if (type == FUNCTION_BODY) {
         return new LLVMFunctionBodyImpl(node);
-       } else if (type == FUNCTION_DECLARATION) {
-         return new LLVMFunctionDeclarationImpl(node);
-       } else if (type == FUNCTION_DEFINITION) {
-         return new LLVMFunctionDefinitionImpl(node);
+      }
+      else if (type == FUNCTION_DECLARATION) {
+        return new LLVMFunctionDeclarationImpl(node);
+      }
+      else if (type == FUNCTION_DEFINITION) {
+        return new LLVMFunctionDefinitionImpl(node);
       }
       else if (type == FUNCTION_HEADER) {
         return new LLVMFunctionHeaderImpl(node);
@@ -464,9 +466,6 @@ public interface LLVMTypes {
       }
       else if (type == THREAD_LOCAL_STORAGE) {
         return new LLVMThreadLocalStorageImpl(node);
-      }
-      else if (type == TYPE) {
-        return new LLVMTypeImpl(node);
       }
       else if (type == TYPED_VALUE) {
         return new LLVMTypedValueImpl(node);
